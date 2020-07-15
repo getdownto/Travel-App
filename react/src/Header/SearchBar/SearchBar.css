@@ -1,0 +1,38 @@
+.Search {
+    display: block;
+    text-align: center;
+    margin-top: 12vh;
+}
+
+.SearchBox {
+    display: inline-block !important; 
+    background-color: rgba(235, 235, 235, 0.8);
+    border: 1px solid transparent;
+    height: 6vh;
+    width: 20em;
+    border-right: none;
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    outline: none;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+
+.SearchBtn {
+    display: inline-block !important; 
+    background-color: #FFF35F;
+    border: 1px solid transparent;
+    height: 6vh;
+    width: 10em;
+    border-right: none;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+    cursor: pointer;
+    outline: none;
+    color: #411C17;
+    font-weight: bold;
+}
+
+.SearchBtn:hover {
+    background-color: #f7e527;
+}

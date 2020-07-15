@@ -1,0 +1,46 @@
+header {
+    background-image: linear-gradient(rgba(32, 74, 68, 0.7), rgba(128, 128, 128, 0.1)), url('/507.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    top: 0;
+}
+
+h4 {
+    color: #FFF35F;
+    font-weight: 400;
+    margin-top: 10vh;
+    font-size: 2.3vh;
+    letter-spacing: 1.5px;
+}
+
+h1 {
+    color: rgba(245, 245, 245, 0.829);
+    font-size: 8vh;
+    margin-top: 4vh;
+}
+
+h5 {
+    color: whitesmoke;
+    font-weight: 300;
+    font-size: 2.3vh;
+    margin-top: 1.8vh;
+    letter-spacing: 2px;
+}
+
+.Tabs {
+    display: flex;
+    width: 35vw;
+    margin: auto;
+    margin-top: 10vh;
+    justify-content: space-between;
+}
+
+.Tabs div {
+    background-color: #B9CDC4;
+    padding: 1.3vh;
+    width: 20vh;
+    color: #411C17;
+    font-weight: 500;
+    font-size: 1.9vh;
+}
