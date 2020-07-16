@@ -13,6 +13,9 @@ class Items extends React.Component {
                     <ItemCart />
                     <ItemCart />
                     <ItemCart />
+                    <ItemCart />
+                    <ItemCart />
+                    <ItemCart />
                 </div>
             </div>
         )
