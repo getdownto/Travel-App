@@ -1,5 +1,45 @@
 .Cart {
     background-color: rgb(255, 255, 255);
-    padding: 12vh 0;
     border-radius: 10px;
+    height: 45vh;
+}
+
+.Cart img {
+    width: 100%;
+}
+
+.Heading {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 3vh;
+}
+
+.Icon {
+    height: 17px;
+}
+
+.Duration {
+    display: inline-flex;
+    margin-top: 5px;
+}
+
+.Duration p {
+    font-size: 2vh;
+    width: 1000%;
+    margin-left: 5px;
+}
+
+.Price {
+    font-size: 2.5vh;
+    font-weight: bold;
+    color: rgb(49, 49, 49);
+    border-bottom: 4px solid yellow;
+}
+
+.Lower {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    margin-top: 2vh;
 }
