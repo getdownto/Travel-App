@@ -1,0 +1,11 @@
+.CartContainer {
+    width: 80%;
+    margin: 7vh auto;
+}
+
+.Background {
+    display: flex;
+    background-color: whitesmoke;
+    width: 100%;
+    padding: 10px;
+}

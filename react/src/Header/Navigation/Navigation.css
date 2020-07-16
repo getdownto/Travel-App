@@ -1,8 +1,9 @@
 .Navigation {
     display: flex;
+    top: 0;
     width: 80vw;
     margin: auto;
-    padding: 5vh;
+    padding-top: 3vh;
     justify-content: space-between;
 }
 
@@ -53,3 +54,27 @@
 .LoginBtn:hover {
     background-color: #f7e527;
 }
+
+/* -------------------------------------------------------------*/
+/* STICKY NAV */
+/* -------------------------------------------------------------*/
+
+.Sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f5f8f6;
+    box-shadow: 0 2px 2px #3f635a3b;
+    z-index: 9999;
+    padding-bottom: 2vh;
+}
+
+@keyframes moveDown {
+    from {
+      transform: translateY(-5rem);
+    }
+    to {
+      transform: translateY(0rem);
+    }
+  }

@@ -1,0 +1,22 @@
+.Welcome {
+    color: #031E54;
+}
+
+.WelcomeBox {
+    display: flex;
+    justify-content: center;
+    margin: 3% 0;
+}
+
+.WelcomeBox h5 {
+    color: #031E54;
+    font-size: 3vh;
+    text-align: left;
+}
+
+.Yellow {
+    background-color: yellow;
+    height: 20vh;
+    width: 5vh;
+    margin: 0 10vh;
+}
