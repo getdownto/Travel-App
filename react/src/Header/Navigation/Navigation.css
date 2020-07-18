@@ -4,8 +4,33 @@
     width: 80vw;
     margin: auto;
     padding-top: 3vh;
+    padding-bottom: 2vh;
     justify-content: space-between;
 }
+
+.NavigationStandAlone {
+    display: flex;
+    top: 0;
+    margin: auto;
+    padding-top: 3vh;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    padding-bottom: 2vh;
+    width: 100%;
+}
+
+.NavigationStandAlone .Logo {
+    color: #5e5e5e;
+    margin-left: 10%;
+}
+
+.NavigationStandAlone .Menu li a {
+    color: #5e5e5e;
+ }
+
+ .NavigationStandAlone .LoginBtn {
+     margin-right: 10%;
+ }
 
 .Logo {
     color: #e4e4e4;
@@ -60,21 +85,21 @@
 /* -------------------------------------------------------------*/
 
 .Sticky {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #f5f8f6;
-    box-shadow: 0 2px 2px #3f635a3b;
+    background-color: whitesmoke;
+    box-shadow: 0 2px 2px #3f635a17;
     z-index: 9999;
-    padding-bottom: 2vh;
+    transition: all 500ms cubic-bezier(0.55, 0, 0.1, 1);
 }
 
-@keyframes moveDown {
-    from {
-      transform: translateY(-5rem);
-    }
-    to {
-      transform: translateY(0rem);
-    }
-  }
+.Sticky .Logo {
+    color: #5e5e5e;
+}
+
+.Sticky .Menu li a {
+    color: #5e5e5e;
+ }
+

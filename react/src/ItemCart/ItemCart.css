@@ -2,6 +2,7 @@
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     height: 45vh;
+    box-shadow: 3px 3px 12px #cecece56;
 }
 
 .Cart img {
@@ -9,9 +10,11 @@
 }
 
 .Heading {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 3vh;
+    margin-top: 25px;
+    margin-left: 20px;
+    font-size: 2.3vh;
+    font-weight: bold;
+    text-align: left;
 }
 
 .Icon {
@@ -33,13 +36,23 @@
     font-size: 2.5vh;
     font-weight: bold;
     color: rgb(49, 49, 49);
-    border-bottom: 4px solid yellow;
+    border-bottom: 4px solid #FFF35F;
 }
 
 .Lower {
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     margin: auto;
-    margin-top: 2vh;
+    margin-top: 1.5vh;
+}
+
+.Date {
+    text-align: left;
+    padding-right: 30px;
+    font-size: 1.9vh;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    color: rgb(165, 127, 29);
 }

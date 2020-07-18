@@ -1,5 +1,6 @@
 import React from 'react'
 import './Navigation.css'
+import {Link} from 'react-router-dom'
 
 class Navigation extends React.Component {
     state = {
@@ -7,28 +8,28 @@ class Navigation extends React.Component {
         classNames: ['Test']
     }
 
-    // componentDidMount() {
-    //     window.addEventListener('scroll', () => {
-    //         const isTop = window.scrollY > window.innerHeight
-    //         const nav = document.getElementById('nav')
+    componentDidMount() {
+        window.addEventListener('scroll', () => {
+            const isTop = window.scrollY > 2
+            const nav = document.getElementById('nav')
 
-    //         isTop ? nav.classList.add('Sticky') : nav.classList.remove('Sticky')
-    //     })
-    // }
+            isTop ? nav.classList.add('Sticky') : nav.classList.remove('Sticky')
+        })
+    }
 
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll')
-    // }
+    componentDidUnmount() {
+        window.removeEventListener('scroll')
+    }
 
     render () {
         return (
             <nav id="nav">
-                <div className="Navigation">
+                <div className={this.props.className}>
                     <p className="Logo">OFF THE MAP</p>
                     <ul className="Menu">
-                        <li><a href="#home">HOME</a></li>
-                        <li><a href="#about">ABOUT</a></li>
-                        <li><a href="#contacts">CONTACTS</a></li>
+                        <li><Link to="/">HOME</Link></li>
+                        <li><Link to="/test">ABOUT</Link></li>
+                        <li><Link to="/contacts">CONTACTS</Link></li>
                     </ul>
                     <button className="LoginBtn">LOGIN</button>
                 </div>
