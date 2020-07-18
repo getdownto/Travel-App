@@ -6,7 +6,7 @@ const Welcome = (props) => {
         <div className="WelcomeBox">
             <div className="Yellow"></div>
             <div>
-                <h1 className="Welcome">CHOOSE YOUR DESTINATION</h1>
+                <h1 className="Welcome">{props.welcome}</h1>
                 <h5>The Wilderness is Waiting for You</h5>
             </div>
         </div>

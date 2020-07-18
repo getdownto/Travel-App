@@ -1,11 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './Login.css'
+import './Register.css'
 
-class Login extends React.Component {
+class Register extends React.Component {
     state = {
         username: '',
-        password: ''
+        password: '',
+        repeatPassword: ''
     }
 
     changeUsernameHandler = (e) => {
@@ -20,6 +21,12 @@ class Login extends React.Component {
         })
     }
 
+    changeRepeatPasswordHandler = (e) => {
+        this.setState({
+            repeatPassword: e.target.value
+        })
+    }
+
     submitForm = () => {
         console.log(this.state)
     }
@@ -27,15 +34,16 @@ class Login extends React.Component {
     render() {
         return (
             <div className="FormContainer">
-                <form className="Login">
+                <form className="Register">
                     <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.changeUsernameHandler} />
                     <input type="text" name="password" placeholder="Password" value={this.state.password} onChange={this.changePasswordHandler} />
-                    <button>Login</button>
-                    <p><Link to="/register">Not a member yet? Click here to register.</Link></p>
+                    <input type="text" name="repeatPassword" placeholder="Repeat Password" value={this.state.repeatPassword} onChange={this.changeRepeatPasswordHandler} />
+                    <button>Register</button>
+                    <p><Link to="/login">Already a member? Click here to log in.</Link></p>
                 </form>
             </div>
         )
     }
 
 }
-export default Login
+export default Register

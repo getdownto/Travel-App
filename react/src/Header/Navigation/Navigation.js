@@ -28,7 +28,7 @@ class Navigation extends React.Component {
                     <p className="Logo">OFF THE MAP</p>
                     <ul className="Menu">
                         <li><Link to="/">HOME</Link></li>
-                        <li><Link to="/test">ABOUT</Link></li>
+                        <li><Link to="/about">ABOUT</Link></li>
                         <li><Link to="/contacts">CONTACTS</Link></li>
                     </ul>
                     <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button>
