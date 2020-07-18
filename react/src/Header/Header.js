@@ -8,7 +8,7 @@ const Header = (props) => {
         <header>
             <Navigation className="Navigation" />
             <div className="HeroText">
-                <h4 id="target">OFF THE MAP</h4>
+                <h4>OFF THE MAP</h4>
                 <h1>Explore the Wilderness</h1>
                 <h5>Visit the places from your wildest dreams</h5>
             </div>

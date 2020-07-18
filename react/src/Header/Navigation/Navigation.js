@@ -31,7 +31,7 @@ class Navigation extends React.Component {
                         <li><Link to="/test">ABOUT</Link></li>
                         <li><Link to="/contacts">CONTACTS</Link></li>
                     </ul>
-                    <button className="LoginBtn">LOGIN</button>
+                    <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button>
                 </div>
             </nav>
         )

@@ -1,0 +1,41 @@
+.Login {
+    padding: 30px;
+    margin: 7vh auto;
+    text-align: center;
+    display: block;
+    width: 30%;
+}
+
+.Login label, input {
+    display: block;
+    margin: 30px auto;
+    width: 70%;
+    height: 5vh;
+    border: none;
+    border-bottom: 1.5px solid #c4c4c4;
+    outline: none;
+}
+
+.Login button {
+    margin: 10px;
+    padding: 15px;
+    border: none;
+    width: 70%;
+    background-color: #FFF35F;
+    height: 6vh;
+    border-bottom-left-radius: 5vh;
+    border-bottom-right-radius: 5vh;
+    border-top-left-radius: 5vh;
+    border-top-right-radius: 5vh;
+    cursor: pointer;
+    margin-top: 5vh;
+}
+
+.Login button:hover {
+    background-color: #f7e527;
+}
+
+.Login a {
+    text-decoration: none;
+    color: #3a3a3a;
+}
