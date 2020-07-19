@@ -21,8 +21,8 @@ const travelSchema = new Schema({
         required: [true, 'Image is required']
     },
 
-    program: {
-        type: Mixed,
+    description: {
+        type: String,
         required: true
     },
 
