@@ -36,6 +36,8 @@ const travelSchema = new Schema({
         required: [true, 'Price is required']
     },
 
+    additionalTrips: [],
+
     participants: [{
         type: ObjectId,
         ref: "User"

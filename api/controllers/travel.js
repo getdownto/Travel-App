@@ -17,10 +17,10 @@ module.exports = {
     },
 
     post: (req, res, next) => {
-        const { destination, startDate, imageUrl, program, duration, price } = req.body;
+        const { destination, startDate, imageUrl, description, duration, price, additionalTrips } = req.body;
         const { _id } = req.user;
 
-        models.Travel.create({ destination, startDate, imageUrl, program, duration, price })
+        models.Travel.create({ destination, startDate, imageUrl, description, duration, price, additionalTrips, participants: [] })
             // .then((created) => {
             //     return Promise.all([
             //         models.User.updateOne({ _id }, { $push: { posts: createdOrigami } }),
