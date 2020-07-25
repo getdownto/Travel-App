@@ -29,6 +29,7 @@
     border-top-right-radius: 5vh;
     cursor: pointer;
     margin-top: 5vh;
+    outline: none;
 }
 
 .Login button:hover {
@@ -38,4 +39,21 @@
 .Login a {
     text-decoration: none;
     color: #3a3a3a;
+}
+
+.errorIcon {
+    width: 3vh;
+    margin-left: -20px;
+}
+
+.FieldContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.ErrorMessage {
+    font-size: 2vh;
+    color: rgb(230, 66, 66);
+    font-style: italic;
+    margin-top: -4vh;
 }

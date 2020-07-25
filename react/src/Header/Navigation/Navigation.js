@@ -17,9 +17,9 @@ class Navigation extends React.Component {
         })
     }
 
-    componentDidUnmount() {
-        window.removeEventListener('scroll')
-    }
+    // componentWillUnmount() {
+    //     window.removeEventListener('scroll')
+    // }
 
     render () {
         return (
@@ -32,6 +32,7 @@ class Navigation extends React.Component {
                         <li><Link to="/contacts">CONTACTS</Link></li>
                     </ul>
                     <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button>
+                    <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button>
                 </div>
             </nav>
         )
