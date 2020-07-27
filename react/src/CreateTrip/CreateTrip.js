@@ -4,14 +4,17 @@ import DatePicker from "react-datepicker";
 import DynamicInput from './DynamicInput/DynamicInput'
 import "react-datepicker/dist/react-datepicker.css"
 import './CreateTrip.css'
+import travelService from '../services/travel-service'
 
 class CreateTrip extends React.Component {
     state = {
         destination: '',
         price: '',
+        imageUrl: '',
         startDate: null,
         duration: '',
-        additional: []
+        description: '',
+        additionalTrips: []
     }
 
     changeFiealdHandler = (e) => {
@@ -28,36 +31,39 @@ class CreateTrip extends React.Component {
 
     changeHandler = (e, index) => {
         const { name, value } = e.target
-        let trips = [...this.state.additional]
+        let trips = [...this.state.additionalTrips]
         trips[index][name] = value
-        this.setState({ additional: trips })
+        this.setState({ additionalTrips: trips })
     }
 
     addFielsHandler = (e) => {
         e.preventDefault()
-        let trips = [...this.state.additional, { trip: '', price: '' }]
-        this.setState({ additional: trips })
+        let trips = [...this.state.additionalTrips, { trip: '', price: '' }]
+        this.setState({ additionalTrips: trips })
     }
 
     deleteFieldHandler = (e, i) => {
         e.preventDefault()
-        let trips = [...this.state.additional]
+        let trips = [...this.state.additionalTrips]
         trips.splice(i, 1)
-        this.setState({ additional: trips })
+        this.setState({ additionalTrips: trips })
     }
 
     submitForm = (e) => {
         e.preventDefault()
         console.log(this.state)
+        travelService.create(this.state.destination, this.state.price, this.state.imageUrl, this.state.startDate, this.state.duration, this.state.description, this.state.additionalTrips).then(() => {
+            alert("SUCCESS")
+        })
     }
 
     render() {
-        const inputFiellds = this.state.additional.map((a, i) => {
+        const inputFiellds = this.state.additionalTrips.map((a, i) => {
             return <DynamicInput
                 tripValue={a.trip}
                 priceValue={a.price}
                 changed={(e) => this.changeHandler(e, i)}
-                removeButton={this.state.additional.length > 1}
+                removeButton={this.state.additionalTrips.length > 1}
                 add={(e) => this.addFielsHandler(e)}
                 delete={(e) => this.deleteFieldHandler(e, i)} />
         })

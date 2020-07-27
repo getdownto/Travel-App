@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import * as yup from 'yup'
 import userService from '../services/user-service'
 import './Login.css'
+import history from '../history'
 
 const schema = yup.object({
     username: yup.string('Username must be a string')
@@ -30,7 +31,7 @@ class Login extends React.Component {
             .then(() => {
                 this.setState({ errors: null })
                 userService.login(this.state.username, this.state.password).then(() => {
-                    alert('SUCCESS')
+                    history.push('/')
                 })
             })
             .catch(err => {

@@ -25,7 +25,8 @@ class Items extends React.Component {
                     startDate={moment(trip.startDate).format('DD/MM/YYYY')}
                     duration={trip.duration}
                     price={trip.price} 
-                    key={trip._id} />)
+                    key={trip._id}
+                    id={trip._id} />)
             : <div>No trips found.</div>
         return (
             <div className="Background">

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import userService from '../services/user-service'
 import './Register.css'
+import history from '../history'
 
 import * as yup from 'yup'
 
@@ -35,7 +36,7 @@ class Register extends React.Component {
             .then(() => {
                 this.setState({ errors: null })
                 userService.register(this.state.username, this.state.password).then(() => {
-                   return <Redirect to="/login" />
+                   history.push('/login')
                 })
             })
             .catch(err => {

@@ -6,7 +6,7 @@ import '../Header/Header.css'
 const Header = (props) => {
     return (
         <header>
-            <Navigation className="Navigation" />
+            <Navigation className="Navigation" isLogged={props.isLogged} />
             <div className="HeroText">
                 <h4>OFF THE MAP</h4>
                 <h1>Explore the Wilderness</h1>

@@ -31,8 +31,8 @@ class Navigation extends React.Component {
                         <li><Link to="/about">ABOUT</Link></li>
                         <li><Link to="/contacts">CONTACTS</Link></li>
                     </ul>
-                    <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button>
-                    <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button>
+                    {this.props.isLogged === false ? <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button> : null}
+                    {this.props.isLogged === true ? <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> : null}
                 </div>
             </nav>
         )

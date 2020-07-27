@@ -1,0 +1,71 @@
+.Details {
+    background-color: #fafafa;
+    display: block;
+    text-align: left;
+}
+
+.Details h2 {
+    color: rgb(63, 63, 63);
+    font-size: 4vh;
+    padding: 20px;
+    width: 70%;
+    margin: auto;
+}
+
+.DurationContainer {
+    display: inline-flex;
+    justify-content: space-evenly;
+    margin-top: 5px;
+}
+
+.DurationContainer p {
+    font-size: 2.5vh;
+    width: 1000%;
+    margin-left: 5px;
+}
+
+.Image {
+    width: 72%;
+    height: 46vh;
+    margin: auto;
+    padding: 20px;
+}
+
+.Cover {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.DateContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    font-size: 2.5vh;
+}
+
+.Price {
+    font-size: 2.5vh;
+    font-weight: bold;
+    color: rgb(49, 49, 49);
+    border-bottom: 4px solid #FFF35F;
+}
+
+.DateP {
+    color: rgb(165, 127, 29);
+}
+
+.ItemCart {
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    margin: auto;
+    border-radius: 5px;
+    min-height: 5vh;
+    padding: 20px;
+    margin-top: 2vh;
+    box-shadow: 3px 3px 12px #cecece56;
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+}

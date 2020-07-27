@@ -1,12 +1,13 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './ItemCart.css'
 
 const ItemCart = (props) => {
     return (
-        <div className="Cart col span-1-of-3 box">
+        <Link to={`/${props.id}`} className="Cart col span-1-of-3 box">
             <p className="Heading">{props.destination}</p>
             <p className="Date">{props.startDate}</p>
-            <div className="Image">
+            <div className="FullImage">
                 <img className="Cover" src={props.imageUrl} alt="img" />
             </div>
             <div className="Lower">
@@ -17,7 +18,7 @@ const ItemCart = (props) => {
                 </div>
             </div>
 
-        </div>
+        </Link>
     )
 }
 export default ItemCart

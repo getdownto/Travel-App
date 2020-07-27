@@ -20,7 +20,7 @@ module.exports = {
         const { destination, startDate, imageUrl, description, duration, price, additionalTrips } = req.body;
         const { _id } = req.user;
 
-        models.Travel.create({ destination, startDate, imageUrl, description, duration, price, additionalTrips, participants: [] })
+        models.Travel.create({ destination, startDate, imageUrl, description, duration, price, additionalTrips: [...additionalTrips], participants: [] })
             // .then((created) => {
             //     return Promise.all([
             //         models.User.updateOne({ _id }, { $push: { posts: createdOrigami } }),
