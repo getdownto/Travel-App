@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import * as yup from 'yup'
 import userService from '../services/user-service'
+import SubmitButton from '../SubmitButton/SubmitButton'
 import './Login.css'
 import history from '../history'
 
@@ -58,7 +59,7 @@ class Login extends React.Component {
                         {this.state.errors && this.state.errors['password'] ? <img className="errorIcon" src="/close.svg"></img> : null}
                     </div>
                     {this.state.errors && this.state.errors['password'] ? <p className="ErrorMessage">{this.state.errors.password[0]}</p> : null}
-                    <button onClick={this.submitForm}>Login</button>
+                    <SubmitButton submit={this.submitForm}>Login</SubmitButton>
                     <p><Link to="/register">Not a member yet? Click here to register.</Link></p>
                 </form>
             </div>

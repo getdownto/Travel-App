@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import SubmitButton from '../SubmitButton/SubmitButton'
 import userService from '../services/user-service'
 import './Register.css'
 import history from '../history'
@@ -81,7 +82,7 @@ class Register extends React.Component {
                         {this.state.errors && this.state.errors['repeatPassword'] ? <img className="errorIcon" src="/close.svg"></img> : null}
                     </div>
                     {this.state.errors && this.state.errors['repeatPassword'] ? <p className="ErrorMessage">{this.state.errors.repeatPassword[0]}</p> : null}
-                    <button onClick={this.submitForm}>Register</button>
+                    <SubmitButton submit={this.submitForm}>Register</SubmitButton>
                     <p><Link to="/login">Already a member? Click here to log in.</Link></p>
                 </form>
             </div>

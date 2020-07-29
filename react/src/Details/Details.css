@@ -2,13 +2,19 @@
     background-color: #fafafa;
     display: block;
     text-align: left;
+    padding: 10px;
 }
 
 .Details h2 {
     color: rgb(63, 63, 63);
-    font-size: 4vh;
-    padding: 20px;
+    font-size: 3vh;
+    padding: 10px 0;
+    margin-bottom: 15px;
     width: 70%;
+    text-transform: uppercase;
+}
+
+.Title {
     margin: auto;
 }
 

@@ -19,16 +19,17 @@ import Aux from './hoc/Auxiliary';
 class App extends React.Component {
   parseCookiesHandler = () => {
     return document.cookie.split('; ').reduce((acc, cookie) => {
-        const [cookieName, cookieValue] = cookie.split('=')
-        acc[cookieName] = cookieValue
-        return acc
+      const [cookieName, cookieValue] = cookie.split('=')
+      acc[cookieName] = cookieValue
+      return acc
     }, {})
-}
+  }
 
   render() {
     const cookies = this.parseCookiesHandler()
-    const isLogged = cookies['x-auth-token'] !== null
+    const isLogged = cookies['x-auth-token'] !== null && cookies['x-auth-token'] !== undefined
     console.log(isLogged)
+    console.log(cookies)
     return (
       <Router history={history}>
         <div className="App">
@@ -39,8 +40,10 @@ class App extends React.Component {
                 <Welcome welcome="CHOOSE YOUR DESTINATION" />
                 <Items />
               </Route>
-              <Layout>
-                <Navigation className="NavigationStandAlone" isLogged={isLogged} />
+            </Switch>
+            <Layout>
+              <Navigation className="NavigationStandAlone" isLogged={isLogged} />
+              <Switch>
                 <Route path="/about">
                   <Welcome welcome="About" />
                   <h1>Testing Scroll</h1>
@@ -69,8 +72,8 @@ class App extends React.Component {
                   <CreateTrip />
                 </Route>
                 <Route path='/:id' exact component={Details} />
-              </Layout>
-            </Switch>
+              </Switch>
+            </Layout>
           </ScrollToTop>
           <Footer />
         </div>

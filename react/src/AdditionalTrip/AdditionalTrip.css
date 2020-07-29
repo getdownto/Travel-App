@@ -1,0 +1,29 @@
+.CartContent {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-right: 5%;
+}
+
+.Btn {
+    background-color: #FFF35F;
+    border: none;
+    outline: none;
+    height: 4vh;
+    width: 12vh;
+    border-bottom-left-radius: 5vh;
+    border-bottom-right-radius: 5vh;
+    border-top-left-radius: 5vh;
+    border-top-right-radius: 5vh;
+    color: #411C17;
+    font-weight: bold;
+}
+
+.Aligned {
+    display: flex;
+}
+
+.InlinePrice {
+    color: rgb(165, 127, 29);
+    font-weight: 800;
+}
