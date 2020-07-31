@@ -1,0 +1,38 @@
+.Modal {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.329);
+    padding: 2vh 3vh;
+    left: 15%;
+    top: 25%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    transform: translateY(-100vh);
+    opacity: 0;
+    animation-name: falling;
+    animation-duration: 0.3s;
+}
+
+.Close:after{
+        display: block;
+        float: right;
+        content: "\00d7"; /* This will render the 'X' */
+        cursor: pointer;
+}
+
+
+@keyframes falling {
+    from {transform: translateY(-100vh); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+  }
+  
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}

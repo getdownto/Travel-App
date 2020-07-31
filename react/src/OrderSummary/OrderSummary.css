@@ -1,0 +1,30 @@
+.OrderSummary {
+    width: 80%;
+    margin: auto;
+    margin-top: 4vh;
+}
+
+.Columns {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2vh;
+}
+
+.Headings {
+    border-bottom: 1px solid #a3a3a3;
+    padding: 10px 0;
+    margin-top: 3vh;
+}
+
+.Total {
+    width: 40%;
+    float: right;
+    border-top: 1px solid #a3a3a3;
+    padding-top: 0;
+    margin-top: 4vh;
+    font-weight: 700;
+}
+
+.Thanks {
+    color: rgb(165, 127, 29);
+}
