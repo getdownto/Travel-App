@@ -9,6 +9,7 @@ const AdditionalTrip = (props) => {
                 <p className="InlinePrice">${props.price}</p>
             </div>
             <button className="Btn" id={props.id} onClick={props.clicked}>Add</button>
+            {props.visible ? <img className="confirmIcon" src="/confirm.svg"></img> : null}
         </div>
     )
 }

@@ -10,7 +10,8 @@ import moment from 'moment'
 class Details extends React.Component {
     state = {
         loadedTrip: null,
-        totalPrice: 0
+        totalPrice: 0,
+        visible: {}
     }
 
     componentDidMount() {
@@ -25,24 +26,27 @@ class Details extends React.Component {
 
     additionalClickHandler = (e) => {
         const loadedTrip = this.state.loadedTrip
+        const visible = {...this.state.visible}
         let text = e.target.innerText
         if (text === 'Add') {
             const oldPrice = this.state.totalPrice
             let totalPrice = oldPrice + Number(loadedTrip.additionalTrips[e.target.id].price)
-            this.setState({ totalPrice })
+            visible[e.target.id] = true
+            this.setState({ totalPrice, visible })
             e.target.innerText = 'Remove'
-            console.log(this.state.totalPrice)
+            console.log(this.state.visible)
         } else {
             const oldPrice = this.state.totalPrice
             let totalPrice = oldPrice - loadedTrip.additionalTrips[e.target.id].price
-            this.setState({ totalPrice })
+            visible[e.target.id] = false
+            this.setState({ totalPrice, visible })
             e.target.innerText = 'Add'
             console.log(this.state.totalPrice)
         }
     }
 
     submitHandler = (e) => {
-        console.log(this.state.totalPrice)
+        console.log(this.state)
     }
 
     render() {
@@ -79,7 +83,7 @@ class Details extends React.Component {
                             destination={trip.trip}
                             price={trip.price}
                             clicked={this.additionalClickHandler}
-                            text={this.state.btnText} />
+                            visible={this.state.visible && this.state.visible[index]} />
                     }) : null}
                 <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>
             </div>

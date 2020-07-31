@@ -1,0 +1,93 @@
+.CreateTrip {
+    padding: 30px;
+    margin: 7vh auto;
+    text-align: center;
+    display: block;
+    width: 30%;
+}
+
+.CreateTrip input {
+    margin: 30px auto;
+    width: 70%;
+    height: 5vh;
+    border: none;
+    border-bottom: 1.5px solid #c4c4c4;
+    outline: none;
+}
+
+textarea { 
+    border-style: none; 
+    border-color: Transparent; 
+    border: 1.5px solid #c4c4c4;
+    overflow: auto;
+    width: 70%;
+    outline: none; 
+    resize: none;
+    margin-top: 30px;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  label {
+      display: block;
+      text-align: left;
+      padding: 0 60px;
+      margin-bottom: -15px;
+      color: gray;
+      font-size: 1.9vh;
+  }
+
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+    display: inline;
+}
+
+.Submit {
+    margin: 10px;
+    padding: 15px;
+    border: none;
+    width: 70%;
+    background-color: #FFF35F;
+    height: 6vh;
+    border-bottom-left-radius: 5vh;
+    border-bottom-right-radius: 5vh;
+    border-top-left-radius: 5vh;
+    border-top-right-radius: 5vh;
+    cursor: pointer;
+    margin-top: 5vh;
+    outline: none;
+}
+
+.Submit:hover {
+    background-color: #f7e527;
+}
+
+.CreateTrip a {
+    text-decoration: none;
+    color: #3a3a3a;
+}
+
+.CreateTrip h5 {
+    color: #3a3a3a;
+}
+
+.Additional {
+    margin: 10px;
+    padding: 15px;
+    border: none;
+    width: 70%;
+    height: 6vh;
+    border-bottom-left-radius: 5vh;
+    border-bottom-right-radius: 5vh;
+    border-top-left-radius: 5vh;
+    border-top-right-radius: 5vh;
+    cursor: pointer;
+    margin-top: 5vh;
+    background-color: whitesmoke;
+    outline: none;
+}
+
+.Additional:hover {
+    background-color: rgb(236, 236, 236) !important;
+}

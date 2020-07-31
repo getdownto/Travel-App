@@ -9,6 +9,7 @@ import Footer from './Footer/Footer'
 import Login from './Login/Login'
 import Register from './Register/Register'
 import CreateTrip from './CreateTrip/CreateTrip'
+import EditTrip from './EditTrip/EditTrip'
 import Details from './Details/Details'
 import { Router, Link, Route, Switch } from 'react-router-dom'
 import './App.css';
@@ -34,16 +35,16 @@ class App extends React.Component {
       <Router history={history}>
         <div className="App">
           <ScrollToTop>
-            <Switch>
-              <Route path="/" exact>
-                <Header isLogged={isLogged} />
-                <Welcome welcome="CHOOSE YOUR DESTINATION" />
-                <Items />
-              </Route>
-            </Switch>
             <Layout>
               <Navigation className="NavigationStandAlone" isLogged={isLogged} />
               <Switch>
+                <Route path="/" exact>
+                  <header>
+                  <Header isLogged={isLogged} />
+                  </header>
+                  <Welcome welcome="CHOOSE YOUR DESTINATION" />
+                  <Items />
+                </Route>
                 <Route path="/about">
                   <Welcome welcome="About" />
                   <h1>Testing Scroll</h1>
@@ -72,13 +73,13 @@ class App extends React.Component {
                   <CreateTrip />
                 </Route>
                 <Route path='/:id' exact component={Details} />
+                <Route path='/edit/:id' exact component={EditTrip} />
               </Switch>
             </Layout>
           </ScrollToTop>
           <Footer />
         </div>
       </Router>
-
     )
   }
 }

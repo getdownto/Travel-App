@@ -86,7 +86,7 @@ class CreateTrip extends React.Component {
                     <textarea rows="6" name="description" value={this.state.description} onChange={this.changeFiealdHandler} />
                     <button className="Additional" onClick={(e) => this.addFielsHandler(e)}>Add Additional Trips</button>
                     {inputFiellds}
-                    <SubmitButton submit={(e) => this.submitForm(e)}>CreateTrip</SubmitButton>
+                    <button className="Submit" onClick={(e) => this.submitForm(e)}>CreateTrip</button>
                 </form>
             </div>
         )

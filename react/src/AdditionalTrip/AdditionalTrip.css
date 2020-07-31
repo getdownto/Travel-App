@@ -17,6 +17,11 @@
     border-top-right-radius: 5vh;
     color: #411C17;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.Btn:hover {
+    background-color: #ffee00;
 }
 
 .Aligned {
@@ -26,4 +31,9 @@
 .InlinePrice {
     color: rgb(165, 127, 29);
     font-weight: 800;
+}
+
+.confirmIcon {
+    width: 3.5vh;
+    padding-left: 5vh;
 }

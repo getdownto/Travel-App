@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const timeZone = require('mongoose-timezone');
 const Schema = mongoose.Schema;
 const Model = mongoose.model;
 const { String, Number, Boolean, ObjectId, Mixed } = Schema.Types;
@@ -44,5 +45,7 @@ const travelSchema = new Schema({
     }]
 
 });
+
+travelSchema.plugin(timeZone, { paths: ['date', 'subDocument.subDate'] });
 
 module.exports = new Model('Travel', travelSchema);

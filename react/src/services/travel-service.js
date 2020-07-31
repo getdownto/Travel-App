@@ -23,7 +23,27 @@ const travelService = {
                 additionalTrips
             }),
             credentials: 'include'
-        }).then(res => res.json())
+        }).then(res => res.text())
+    },
+    update: function(id, destination, price, imageUrl, startDate, duration, description, additionalTrips) {
+        return fetch(`http://localhost:9999/api/travel/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+
+            },
+            body: JSON.stringify({
+                destination,
+                price,
+                imageUrl,
+                startDate,
+                duration,
+                description,
+                additionalTrips
+            }),
+            credentials: 'include'
+        }).then(res => res.text())
     }
 
 }

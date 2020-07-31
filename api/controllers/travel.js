@@ -35,8 +35,8 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { destination, startDate, imageUrl, program, duration, price } = req.body;
-        models.Travel.updateOne({ _id: id }, { destination, startDate, imageUrl, program, duration, price })
+        const { destination, startDate, imageUrl, description, duration, price, additionalTrips } = req.body;
+        models.Travel.update({ _id: id }, { destination, startDate, imageUrl, description, duration, price, additionalTrips: [...additionalTrips], participants: [] })
             .then((updatedTravel) => res.send(updatedTravel))
             .catch(next)
     },
