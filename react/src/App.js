@@ -9,9 +9,10 @@ import Footer from './Footer/Footer'
 import Login from './Login/Login'
 import Register from './Register/Register'
 import CreateTrip from './CreateTrip/CreateTrip'
+import Calendar from './Calendar/Calendar'
 import EditTrip from './EditTrip/EditTrip'
 import Details from './Details/Details'
-import { Router, Link, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import './App.css';
 import './Grid.css'
 import history from './history';
@@ -72,6 +73,7 @@ class App extends React.Component {
                   <Welcome welcome="Add new trip" />
                   <CreateTrip />
                 </Route>
+                <Route path='/calendar' exact component={Calendar} />
                 <Route path='/:id' exact component={Details} />
                 <Route path='/edit/:id' exact component={EditTrip} />
               </Switch>

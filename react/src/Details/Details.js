@@ -75,7 +75,7 @@ class Details extends React.Component {
                     <div className="ItemCart">
                         <h2>Date and Price</h2>
                         <div className="DateContainer">
-                            <p className="Price">${this.state.loadedTrip.price}</p>
+                            <p className="Price">${this.state.loadedTrip.price.toFixed(2)}</p>
                             <p className="DateP">{moment(this.state.loadedTrip.startDate).format('DD/MM/YYYY')}</p>
                             <div className="DurationContainer">
                                 <img className="Calendar" src="/calendar.svg" alt="img" />
@@ -95,7 +95,7 @@ class Details extends React.Component {
                                 id={index}
                                 key={index}
                                 destination={trip.trip}
-                                price={trip.price}
+                                price={Number(trip.price).toFixed(2)}
                                 clicked={this.additionalClickHandler}
                                 visible={this.state.visible && this.state.visible[index]} />
                         }) : null}

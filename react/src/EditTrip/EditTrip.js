@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import DatePicker from "react-datepicker";
 import DynamicInput from '../CreateTrip/DynamicInput/DynamicInput'
-import SubmitButton from '../SubmitButton/SubmitButton'
+import Welcome from '../Welcome/Welcome'
 import moment from 'moment'
 import "react-datepicker/dist/react-datepicker.css"
 import './EditTrip.css'
@@ -91,6 +90,7 @@ class CreateTrip extends React.Component {
         }) : <p>Loading...</p>
         return (
             <div>
+                <Welcome welcome="Edit Trip" />
                 <form className="CreateTrip">
                     <input type="text" name="destination" placeholder="Destination" value={this.state.destination} onChange={this.changeFiealdHandler} />
                     <input type="text" name="price" placeholder="Price" value={this.state.price} onChange={this.changeFiealdHandler} />
@@ -107,7 +107,7 @@ class CreateTrip extends React.Component {
                     <textarea rows="6" name="description" value={this.state.description} onChange={this.changeFiealdHandler} />
                     <button className="Additional" onClick={(e) => this.addFielsHandler(e)}>Add Additional Trips</button>
                     {inputFiellds}
-                    <button className="Submit" onClick={(e) => this.submitForm(e)}>CreateTrip</button>
+                    <button className="Submit" onClick={(e) => this.submitForm(e)}>Edit Trip</button>
                 </form>
             </div>
         )

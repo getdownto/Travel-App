@@ -11,7 +11,7 @@ const ItemCart = (props) => {
                 <img className="Cover" src={props.imageUrl} alt="img" />
             </div>
             <div className="Lower">
-                <p className="Price">$ {props.price}</p>
+                <p className="Price">${props.price.toFixed(2)}</p>
                 <div className="Duration">
                     <img className="Icon" src="/calendar.svg" alt="img" />
                     <p>{props.duration} days</p>

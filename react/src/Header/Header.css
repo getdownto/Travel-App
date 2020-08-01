@@ -44,3 +44,12 @@ h5 {
     font-weight: 500;
     font-size: 1.9vh;
 }
+
+.Tabs div:hover {
+    background-color: #d3e9df;
+}
+
+.Tabs a {
+    text-decoration: none;
+    color: #411C17;
+}

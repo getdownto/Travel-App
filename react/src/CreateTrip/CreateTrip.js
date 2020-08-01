@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import DatePicker from "react-datepicker";
 import DynamicInput from './DynamicInput/DynamicInput'
-import SubmitButton from '../SubmitButton/SubmitButton'
 import "react-datepicker/dist/react-datepicker.css"
 import './CreateTrip.css'
 import travelService from '../services/travel-service'
