@@ -11,7 +11,7 @@ class Items extends React.Component {
 
     componentDidMount() {
         travelService.load().then(trips => {
-            trips = trips.filter(trip => moment(trip.startDate).format('MMMM').toLowerCase() === this.props.filter)
+            trips = trips.filter(trip => trip.destination.toLowerCase() === this.props.filterD)
             this.setState({ trips })
         })
     }
@@ -19,7 +19,7 @@ class Items extends React.Component {
     componentDidUpdate(prevState) {
         if(prevState.trips !== this.state.trips) {
             travelService.load().then(trips => {
-                trips = trips.filter(trip => moment(trip.startDate).format('MMMM').toLowerCase() === this.props.filter)
+                trips = trips.filter(trip => trip.destination.toLowerCase() === this.props.filterD)
                 this.setState({ trips })
             })
         }

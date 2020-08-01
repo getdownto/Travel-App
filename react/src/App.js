@@ -10,6 +10,7 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 import CreateTrip from './CreateTrip/CreateTrip'
 import Calendar from './Calendar/Calendar'
+import Destinations from './Destinations/Destinations'
 import EditTrip from './EditTrip/EditTrip'
 import Details from './Details/Details'
 import { Router, Route, Switch } from 'react-router-dom'
@@ -74,6 +75,7 @@ class App extends React.Component {
                   <CreateTrip />
                 </Route>
                 <Route path='/calendar' exact component={Calendar} />
+                <Route path='/destinations' exact component={Destinations} />
                 <Route path='/:id' exact component={Details} />
                 <Route path='/edit/:id' exact component={EditTrip} />
               </Switch>

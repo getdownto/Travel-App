@@ -1,0 +1,24 @@
+.DestinationsList {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 10vh auto;
+    width: 70%;
+}
+
+.DestinationsList li {
+    text-decoration: none;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 0.5vh;
+    border-bottom: 2px solid transparent;
+    min-width: 30vh;
+    background-color: whitesmoke;
+    padding: 1vh;
+}
+
+.DestinationsList li:hover,
+.Selected {
+    border-bottom: 2px solid yellow;
+}
