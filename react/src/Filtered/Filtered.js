@@ -11,15 +11,19 @@ class Items extends React.Component {
 
     componentDidMount() {
         travelService.load().then(trips => {
-            trips = trips.filter(trip => moment(trip.startDate).format('MMMM').toLowerCase() === this.props.filter)
+            trips = trips.filter(trip => moment(trip.startDate).format('MMMM').toLowerCase() === this.props.filter && moment(trip.startDate).isSameOrAfter(moment()))
             this.setState({ trips })
+            console.log(trips)
         })
     }
 
-    componentDidUpdate(prevState) {
-        if(prevState.trips !== this.state.trips) {
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.filter !== this.props.filter) {
+            console.log('hi', prevState)
+            console.log('boo', prevProps);
             travelService.load().then(trips => {
-                trips = trips.filter(trip => moment(trip.startDate).format('MMMM').toLowerCase() === this.props.filter)
+                trips = trips.filter(trip => moment(trip.startDate).format('MMMM').toLowerCase() === this.props.filter && moment(trip.startDate).isSameOrAfter(moment()))
+                console.log(trips);
                 this.setState({ trips })
             })
         }

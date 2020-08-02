@@ -24,7 +24,7 @@ class Destinations extends React.Component {
     }
 
     render() {
-        console.log(this.state.selectedDestination)
+        console.log('d', this.state.selectedDestination)
         let classString = ''
         // const monthTiles = currentMonthArr.map((curr, index) => {
         //     this.state.selectedMonth === curr.toLowerCase() ? classString = 'SingleTile Selected' : classString = 'SingleTile'

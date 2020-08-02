@@ -11,6 +11,7 @@ class Items extends React.Component {
 
     componentDidMount() {
         travelService.load().then(trips => {
+            trips = trips.filter(trip => moment(trip.startDate).isSameOrAfter(moment()))
             this.setState({ trips })
         })
     }
