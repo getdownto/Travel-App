@@ -18,11 +18,8 @@
     padding: 1vh;
 }
 
-.DestinationsList li:hover {
+.DestinationsList li:hover,
+.Selected {
     border-bottom: 3px solid #FFF35F !important;
     background-color: whitesmoke !important;
-}
-
-.Selected {
-    background-color: #FFF35F !important;
 }

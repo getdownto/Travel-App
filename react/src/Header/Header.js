@@ -6,23 +6,8 @@ import '../Header/Header.css'
 
 const Header = (props) => {
     return (
-        // <header>
-        //     <Navigation className="Navigation" isLogged={props.isLogged} />
-        //     <div className="HeroText">
-        //         <h4>OFF THE MAP</h4>
-        //         <h1>Explore the Wilderness</h1>
-        //         <h5>Visit the places from your wildest dreams</h5>
-        //     </div>
-        //     <div className="Tabs">
-        //         <div>CALENDAR</div>
-        //         <div>DESTINATIONS</div>
-        //         <div>LAST MINUTE</div>
-        //     </div>
-        //     <SearchBar />
-        // </header>
 
         <Aux>
-        {/* <Navigation className="Navigation" isLogged={props.isLogged} /> */}
         <div className="HeroText">
             <h4>OFF THE MAP</h4>
             <h1>Explore the Wilderness</h1>
@@ -31,7 +16,7 @@ const Header = (props) => {
         <div className="Tabs">
             <div><Link to="/calendar" >CALENDAR</Link></div>
             <div><Link to="/destinations" >DESTINATIONS</Link></div>
-            <div><Link>LAST MINUTE</Link></div>
+            <div><Link to="/lastminute">LAST MINUTE</Link></div>
         </div>
         <SearchBar />
     </Aux>

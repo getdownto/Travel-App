@@ -72,3 +72,12 @@
     margin-left: 20px;
     color: rgb(165, 127, 29);
 }
+
+.PriceContainer {
+    display: flex;
+}
+
+.OldPrice {
+    text-decoration: line-through;
+    margin-left: 10px;
+}

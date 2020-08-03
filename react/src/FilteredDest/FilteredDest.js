@@ -32,18 +32,25 @@ class Items extends React.Component {
 
 
     render() {
+        const endDate = moment().add(7, 'days')
         const trips = this.state.trips
         const oldTrips = this.state.oldTrips
         const renderedTrips = trips !== null && trips.length > 0 ?
-            trips.map(trip =>
-                <ItemCart
-                    destination={trip.destination}
-                    imageUrl={trip.imageUrl}
-                    startDate={moment(trip.startDate).format('DD/MM/YYYY')}
-                    duration={trip.duration}
-                    price={trip.price}
-                    key={trip._id}
-                    id={trip._id} />)
+                trips.map(trip => {
+                    let discount = false
+                    if(moment(trip.startDate).isBetween(moment(), endDate)) {
+                        discount = true
+                    }
+                     return <ItemCart
+                        destination={trip.destination}
+                        imageUrl={trip.imageUrl}
+                        startDate={moment(trip.startDate).format('DD/MM/YYYY')}
+                        duration={trip.duration}
+                        price={trip.price} 
+                        key={trip._id}
+                        id={trip._id}
+                        discount={discount} />
+                })
             : <div>No upcoming trips.</div>
         const renderedOldTrips = oldTrips !== null && oldTrips.length > 0 ?
             oldTrips.map(trip =>

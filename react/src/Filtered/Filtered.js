@@ -19,8 +19,6 @@ class Items extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.filter !== this.props.filter) {
-            console.log('hi', prevState)
-            console.log('boo', prevProps);
             travelService.load().then(trips => {
                 trips = trips.filter(trip => moment(trip.startDate).format('MMMM').toLowerCase() === this.props.filter && moment(trip.startDate).isSameOrAfter(moment()))
                 console.log(trips);
@@ -31,17 +29,24 @@ class Items extends React.Component {
     
 
     render() {
+        const endDate = moment().add(7, 'days')
         const trips = this.state.trips
         const renderedTrips = trips !== null && trips.length > 0 ?
-            trips.map(trip =>
-                <ItemCart
-                    destination={trip.destination}
-                    imageUrl={trip.imageUrl}
-                    startDate={moment(trip.startDate).format('DD/MM/YYYY')}
-                    duration={trip.duration}
-                    price={trip.price} 
-                    key={trip._id}
-                    id={trip._id} />)
+        trips.map(trip => {
+            let discount = false
+            if(moment(trip.startDate).isBetween(moment(), endDate)) {
+                discount = true
+            }
+             return <ItemCart
+                destination={trip.destination}
+                imageUrl={trip.imageUrl}
+                startDate={moment(trip.startDate).format('DD/MM/YYYY')}
+                duration={trip.duration}
+                price={trip.price} 
+                key={trip._id}
+                id={trip._id}
+                discount={discount} />
+        })
             : <div>No trips found.</div>
         return (
             <div className="Background">

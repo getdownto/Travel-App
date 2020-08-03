@@ -10,6 +10,8 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 import CreateTrip from './CreateTrip/CreateTrip'
 import Calendar from './Calendar/Calendar'
+import LastMinute from './/LastMinute/LastMinute'
+import SearchResults from './SearchResults/SearchResults'
 import Destinations from './Destinations/Destinations'
 import EditTrip from './EditTrip/EditTrip'
 import Details from './Details/Details'
@@ -75,6 +77,8 @@ class App extends React.Component {
                   <CreateTrip />
                 </Route>
                 <Route path='/calendar' exact component={Calendar} />
+                <Route path='/lastminute' exact component={LastMinute} />
+                <Route path='/search' exact component={SearchResults} />
                 <Route path='/destinations' exact component={Destinations} />
                 <Route path='/:id' exact component={Details} />
                 <Route path='/edit/:id' exact component={EditTrip} />
