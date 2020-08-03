@@ -9,20 +9,27 @@ import OrderSummary from '../OrderSummary/OrderSummary'
 import './Details.css'
 import moment from 'moment'
 
+const endDate = moment().add(7, 'days')
+
 class Details extends React.Component {
     state = {
         loadedTrip: null,
         totalPrice: 0,
         additionalTrips: null,
         visible: {},
-        purchased: false
+        purchased: false,
+        discount: false
     }
 
     componentDidMount() {
+        let discount = false
         console.log(this.props.match.params.id)
         const id = this.props.match.params.id
         travelService.details(id).then(loadedTrip => {
-            this.setState({ loadedTrip, totalPrice: loadedTrip.price })
+            if(moment(loadedTrip.startDate).isBetween(moment(), endDate)) {
+                discount = true
+            }
+            this.setState({ loadedTrip, totalPrice: discount ? 0.85 * loadedTrip.price : loadedTrip.price, discount })
         })
     }
 
@@ -63,7 +70,7 @@ class Details extends React.Component {
                     <Modal show={this.submitHandler}>
                         <OrderSummary
                             mainTrip={this.state.loadedTrip.destination}
-                            mainTripPrice={this.state.loadedTrip.price}
+                            mainTripPrice={this.state.discount ? 0.85 * this.state.loadedTrip.price : this.state.loadedTrip.price}
                             additionalTrips={this.state.additionalTrips}
                             totalPrice={this.state.totalPrice} />
                     </Modal> : null}
@@ -75,7 +82,10 @@ class Details extends React.Component {
                     <div className="ItemCart">
                         <h2>Date and Price</h2>
                         <div className="DateContainer">
-                            <p className="Price">${this.state.loadedTrip.price.toFixed(2)}</p>
+                        {this.state.discount ? <div className="PriceContainer">
+                    <p className="Price">${(0.85 * this.state.loadedTrip.price).toFixed(2)}</p>
+                    <p className="OldPrice">${this.state.loadedTrip.price.toFixed(2)}</p>
+                </div> : <p className="Price">${this.state.loadedTrip.price.toFixed(2)}</p>}
                             <p className="DateP">{moment(this.state.loadedTrip.startDate).format('DD/MM/YYYY')}</p>
                             <div className="DurationContainer">
                                 <img className="Calendar" src="/calendar.svg" alt="img" />

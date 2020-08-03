@@ -72,7 +72,7 @@ class App extends React.Component {
                   <Welcome welcome="Register" />
                   <Register />
                 </Route>
-                <Route path='/create'>
+                <Route path='/create'history={this.props.history} >
                   <Welcome welcome="Add new trip" />
                   <CreateTrip />
                 </Route>

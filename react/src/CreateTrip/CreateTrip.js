@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import DynamicInput from './DynamicInput/DynamicInput'
 import "react-datepicker/dist/react-datepicker.css"
 import './CreateTrip.css'
+import history from '../history'
 import travelService from '../services/travel-service'
 
 class CreateTrip extends React.Component {
@@ -52,7 +53,7 @@ class CreateTrip extends React.Component {
         e.preventDefault()
         console.log(this.state)
         travelService.create(this.state.destination, this.state.price, this.state.imageUrl, this.state.startDate, this.state.duration, this.state.description, this.state.additionalTrips).then(() => {
-            alert("SUCCESS")
+            history.push('/')
         })
     }
 

@@ -27,10 +27,8 @@ module.exports = {
             //         models.Origami.findOne({ _id: createdOrigami._id })
             //     ]);
             // })
-            .then(([modifiedObj, travelObj]) => {
-                res.send(travelObj);
-            })
-            .catch(next);
+            .then((createdTravel) => res.send(createdTravel))
+            .catch(next)
     },
 
     put: (req, res, next) => {

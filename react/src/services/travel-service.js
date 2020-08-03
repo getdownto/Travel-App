@@ -6,7 +6,7 @@ const travelService = {
         return fetch(`http://localhost:9999/api/travel/${id}`).then(res => res.json())
     },
     create: function(destination, price, imageUrl, startDate, duration, description, additionalTrips) {
-        return fetch('http://localhost:9999/api/travel/', {
+        return fetch('http://localhost:9999/api/travel', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
