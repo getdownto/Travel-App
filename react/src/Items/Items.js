@@ -24,7 +24,7 @@ class Items extends React.Component {
                 let discount = false
                 if(moment(trip.startDate).isBetween(moment(), endDate)) {
                     discount = true
-                    console.log(trip.destination, ' ', trip.startDate)
+                    //console.log(trip.destination, ' ', trip.startDate)
                 }
                  return <ItemCart
                     destination={trip.destination}

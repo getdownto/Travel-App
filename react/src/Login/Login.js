@@ -1,10 +1,13 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import * as yup from 'yup'
 import userService from '../services/user-service'
 import SubmitButton from '../SubmitButton/SubmitButton'
 import './Login.css'
+import Welcome from '../Welcome/Welcome'
+import Aux from '../hoc/Auxiliary'
 import history from '../history'
+import AuthContext from '../Context'
 
 const schema = yup.object({
     username: yup.string('Username must be a string')
@@ -19,8 +22,11 @@ class Login extends React.Component {
     state = {
         username: '',
         password: '',
-        errors: null
-    }
+        errors: null,
+        isLogged: false
+    } 
+
+    static contextType = AuthContext
 
     changeFieldHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
@@ -31,7 +37,8 @@ class Login extends React.Component {
         schema.validate(this.state, { abortEarly: false })
             .then(() => {
                 this.setState({ errors: null })
-                userService.login(this.state.username, this.state.password).then(() => {
+                userService.login(this.state.username, this.state.password).then((user) => {
+                    this.context.logIn(user)
                     history.push('/')
                 })
             })
@@ -47,9 +54,11 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="FormContainer">
+            <Aux>
+                <Welcome welcome="Sign in" />
+                <div className="FormContainer">
                 <form className="Login">
-                <div className="FieldContainer">
+                    <div className="FieldContainer">
                         <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.changeFieldHandler} />
                         {this.state.errors && this.state.errors['username'] ? <img className="errorIcon" src="/close.svg"></img> : null}
                     </div>
@@ -60,9 +69,14 @@ class Login extends React.Component {
                     </div>
                     {this.state.errors && this.state.errors['password'] ? <p className="ErrorMessage">{this.state.errors.password[0]}</p> : null}
                     <SubmitButton submit={this.submitForm}>Login</SubmitButton>
+                    {/* {this.state.isLogged === true && <Redirect to={{
+                        pathname: '/',
+                        state: { isLogged: true }
+                    }} />} */}
                     <p><Link to="/register">Not a member yet? Click here to register.</Link></p>
                 </form>
             </div>
+            </Aux>
         )
     }
 

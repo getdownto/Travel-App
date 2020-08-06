@@ -1,12 +1,17 @@
 import React from 'react'
+import userService from '../../services/user-service'
+import history from '../../history'
+import AuthContext from '../../Context'
 import './Navigation.css'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 class Navigation extends React.Component {
+
     state = {
-        isSticky: false,
-        classNames: ['Test']
+        isSticky: false
     }
+
+    static contextType = AuthContext
 
     componentDidMount() {
         window.addEventListener('scroll', () => {
@@ -17,9 +22,12 @@ class Navigation extends React.Component {
         })
     }
 
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll')
-    // }
+    logout = () => {
+        userService.logout().then(() => {
+            this.context.logOut()
+            history.push('/')
+        })
+    }
 
     render () {
         return (
@@ -31,8 +39,9 @@ class Navigation extends React.Component {
                         <li><Link to="/about">ABOUT</Link></li>
                         <li><Link to="/contacts">CONTACTS</Link></li>
                     </ul>
-                    {this.props.isLogged === false ? <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button> : null}
-                    {this.props.isLogged === true ? <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> : null}
+                    {this.props.isLogged === false ? <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button> : 
+                    // <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> 
+                    <button className="LogoutBtn" onClick={this.logout}>LOGOUT</button> }
                 </div>
             </nav>
         )

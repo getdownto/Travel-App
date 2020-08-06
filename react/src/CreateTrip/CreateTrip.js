@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import DynamicInput from './DynamicInput/DynamicInput'
 import "react-datepicker/dist/react-datepicker.css"
 import './CreateTrip.css'
+import Welcome from '../Welcome/Welcome'
 import history from '../history'
 import travelService from '../services/travel-service'
 
@@ -69,6 +70,7 @@ class CreateTrip extends React.Component {
         })
         return (
             <div>
+                <Welcome welcome="Create Trip" />
                 <form className="CreateTrip">
                     <input type="text" name="destination" placeholder="Destination" value={this.state.destination} onChange={this.changeFiealdHandler} />
                     <input type="text" name="price" placeholder="Price" value={this.state.price} onChange={this.changeFiealdHandler} />
