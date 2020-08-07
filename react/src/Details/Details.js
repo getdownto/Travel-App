@@ -45,20 +45,28 @@ class Details extends React.Component {
             current[loadedTrip.additionalTrips[e.target.id].trip] = loadedTrip.additionalTrips[e.target.id].price
             const additionalTrips = [...this.state.additionalTrips || [], current]
             this.setState({ totalPrice, visible, additionalTrips })
+            // console.log('state after add', this.state.additionalTrips);
             e.target.innerText = 'Remove'
         } else {
             const oldPrice = this.state.totalPrice
+            const trips = [...this.state.additionalTrips]
             let totalPrice = oldPrice - loadedTrip.additionalTrips[e.target.id].price
             visible[e.target.id] = false
-            const index = this.state.additionalTrips.map(a => a.trip).indexOf()
-            const additionalTrips = this.state.additionalTrips.splice(index, 1)
-            this.setState({ totalPrice, visible, additionalTrips })
+            current[loadedTrip.additionalTrips[e.target.id].trip] = loadedTrip.additionalTrips[e.target.id].price
+            console.log('state', this.state.additionalTrips);
+            console.log('additional trips before', trips);
+            const index = this.state.additionalTrips.map(a => Object.keys(a)[0]).indexOf(loadedTrip.additionalTrips[e.target.id].trip)
+            trips.splice(index, 1)
+            console.log('current', current);
+            console.log('index', index);
+            console.log('additional trips', trips);
+            this.setState({ totalPrice, visible, additionalTrips: trips })
             e.target.innerText = 'Add'
         }
     }
 
     submitHandler = (e) => {
-        console.log(this.state)
+        console.log('state after submit', this.state)
         this.setState({ purchased: !this.state.purchased })
     }
 

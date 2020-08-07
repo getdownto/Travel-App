@@ -19,7 +19,12 @@ const userSchema = new Schema({
         require: true
     },
 
-    trips: [{ type: ObjectId, ref: "Origami" }]
+    trips: [{ type: ObjectId, ref: "Origami" }],
+
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
 
 });
 
@@ -45,4 +50,12 @@ userSchema.pre('save', function (next) {
     next();
 });
 
-module.exports = new Model('User', userSchema);
+const User = mongoose.model ('User', userSchema);
+User.seedAdminUser = () => {
+    User.find({}).then(users => {
+        if(users.length > 0) {return}
+        return User.create({username: 'admin', password: 'admin', isAdmin: true})
+    })
+}
+
+module.exports = User
