@@ -27,8 +27,14 @@ module.exports = {
                         return;
                     }
 
+                    const userObj = {
+                        id: user._id,
+                        username: user.username,
+                        isAdmin: user.isAdmin
+                    }
+
                     const token = utils.jwt.createToken({ id: user._id });
-                    res.cookie(config.authCookieName, token).send(user);
+                    res.cookie(config.authCookieName, token).send(userObj);
                 })
                 .catch(next);
         },

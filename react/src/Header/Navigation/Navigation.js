@@ -30,6 +30,8 @@ class Navigation extends React.Component {
     }
 
     render () {
+        console.log(this.props)
+        const loggedInBtn = this.props.isAdmin ? <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> : <button className="LogoutBtn" onClick={this.logout}>LOGOUT</button>
         return (
             <nav id="nav">
                 <div className={this.props.className}>
@@ -39,9 +41,8 @@ class Navigation extends React.Component {
                         <li><Link to="/about">ABOUT</Link></li>
                         <li><Link to="/contacts">CONTACTS</Link></li>
                     </ul>
-                    {this.props.isLogged === false ? <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button> : 
-                    // <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> 
-                    <button className="LogoutBtn" onClick={this.logout}>LOGOUT</button> }
+                    {this.props.isLogged === false ? 
+                    <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button> : loggedInBtn }
                 </div>
             </nav>
         )

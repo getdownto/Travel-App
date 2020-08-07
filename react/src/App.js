@@ -26,6 +26,7 @@ class App extends React.Component {
 
   state = {
     isLogged: false,
+    isAdmin: false,
     user: null
   }
 
@@ -39,7 +40,7 @@ class App extends React.Component {
   }
 
   logIn = (user) => {
-    this.setState({ isLogged: true, user })
+    this.setState({ isLogged: true, isAdmin: JSON.parse(user).isAdmin, user: JSON.parse(user) })
   }
 
   logOut = () => {
@@ -53,14 +54,15 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('logged', this.state.isLogged);
+    console.log('logged', this.state.user);
+    console.log('state', this.state);
     return (
-      <AuthContext.Provider value={{isLogged: this.state.isLogged, user: this.state.user, logIn: this.logIn, logOut: this.logOut}}>
+      <AuthContext.Provider value={{isLogged: this.state.isLogged, isAdmin: this.state.isAdmin, user: this.state.user, logIn: this.logIn, logOut: this.logOut}}>
         <Router history={history}>
           <div className="App">
             <ScrollToTop>
               <Layout>
-                <Navigation className="NavigationStandAlone" isLogged={this.state.isLogged} />
+                <Navigation className="NavigationStandAlone" isLogged={this.state.isLogged} isAdmin={this.state.isAdmin} />
                 <Switch>
                   <Route path="/" exact>
                     <header>
@@ -98,8 +100,8 @@ class App extends React.Component {
                   <Route path='/lastminute' exact component={LastMinute} />
                   <Route path='/search' exact component={SearchResults} />
                   <Route path='/destinations' exact component={Destinations} />
-                  <Route path='/:id' exact component={this.state.isLogged ? Details : Login} />
-                  <Route path='/edit/:id' exact component={this.state.isLogged ? EditTrip : Login} />
+                  <Route path='/:id' exact component={this.state.isLogged ? Details : Login } isAdmin={this.state.isAdmin} />
+                  <Route path='/edit/:id' exact component={this.state.isAdmin ? EditTrip : Login} />
                 </Switch>
               </Layout>
             </ScrollToTop>

@@ -6,8 +6,10 @@ import AdditionalTrip from '../AdditionalTrip/AdditionalTrip'
 import SubmitButton from '../SubmitButton/SubmitButton'
 import Modal from '../Modal/Modal'
 import OrderSummary from '../OrderSummary/OrderSummary'
+import AuthContext from '../Context'
 import './Details.css'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 const endDate = moment().add(7, 'days')
 
@@ -20,6 +22,8 @@ class Details extends React.Component {
         purchased: false,
         discount: false
     }
+
+    static contextType = AuthContext
 
     componentDidMount() {
         let discount = false
@@ -72,6 +76,8 @@ class Details extends React.Component {
 
     render() {
         let trips = null
+        const id = this.props.match.params.id
+        console.log('details props', this.props);
         const content = this.state.loadedTrip ?
             <Aux>
                 {this.state.purchased ?
@@ -117,7 +123,8 @@ class Details extends React.Component {
                                 clicked={this.additionalClickHandler}
                                 visible={this.state.visible && this.state.visible[index]} />
                         }) : null}
-                    <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>
+                        {this.context.isAdmin === true ? <SubmitButton><Link to={`/edit/${id}`}>EDIT</Link></SubmitButton> : <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>}
+                    
                 </div>
             </Aux>
             : <p>Loading...</p>

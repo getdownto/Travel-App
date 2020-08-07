@@ -11,7 +11,7 @@ const userService = {
                 username,
                 password
             })
-        }).then(res => res.json())
+        }).then(res => res.text())
     },
     login: function(username, password) {
         return fetch('http://localhost:9999/api/user/login', {
@@ -26,7 +26,7 @@ const userService = {
                 password
             }),
             credentials: 'include'
-        }).then(res => res.json())
+        }).then(res => res.text())
     },
     logout: function() {
         return fetch('http://localhost:9999/api/user/logout', {

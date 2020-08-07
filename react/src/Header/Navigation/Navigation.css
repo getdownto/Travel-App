@@ -69,7 +69,7 @@
     border: 2px solid #FFF35F;
     outline: none;
     height: 4.5vh;
-    width: 12.5vh;
+    width: 12vh;
     border-bottom-left-radius: 5vh;
     border-bottom-right-radius: 5vh;
     border-top-left-radius: 5vh;
@@ -84,12 +84,12 @@
     border: 2px solid #b8b8b8;
     outline: none;
     height: 4.5vh;
-    width: 12.5vh;
+    width: 12vh;
     border-bottom-left-radius: 5vh;
     border-bottom-right-radius: 5vh;
     border-top-left-radius: 5vh;
     border-top-right-radius: 5vh;
-    color: #411C17;
+    color: #a3a3a3;
     font-weight: 600;
     margin-right: 10%;
     cursor: pointer;
@@ -100,13 +100,9 @@
     color: #411C17;
 }
 
-.LogoutBtn a {
-    text-decoration: none;
-    color: #a3a3a3;
-}
-
 .LoginBtn:hover {
     background-color: #f7e527;
+    border: 2px solid #f7e527;
 }
 
 .LogoutBtn:hover {
