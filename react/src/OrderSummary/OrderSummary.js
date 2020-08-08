@@ -31,7 +31,7 @@ const OrderSummary = (props) => {
                 <p>Total:</p>
                 <p>{props.totalPrice.toFixed(2)}</p>
             </div>
-            <SubmitButton>CONFIRM</SubmitButton>
+            <SubmitButton submit={props.submit} >CONFIRM</SubmitButton>
         </div>
     )
 }

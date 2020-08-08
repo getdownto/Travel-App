@@ -1,0 +1,22 @@
+.ProfileConatiner {
+    text-align: left;
+    margin-left: 10% !important;
+    color: #6e6e6e;
+}
+
+.ProfileHeading {
+    margin: 10% 5% 0 0;
+}
+
+.Logout {
+    border: none;
+    background-color: transparent;
+    margin-top: 10%;
+    font-size: 2vh;
+    color: #6e6e6e;
+    cursor: pointer;
+}
+
+.Logout:hover {
+    border-bottom: 1.2px solid #6e6e6e;
+}

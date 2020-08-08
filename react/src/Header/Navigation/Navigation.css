@@ -132,3 +132,15 @@
     color: #5e5e5e;
  }
 
+ .Profile {
+     display: flex;
+     margin-right: 10%;
+     color: #5e5e5e;
+     text-decoration: none;
+ }
+
+ .Profile img {
+     width: 2.5vh;
+     margin-right: 1vh;
+ }
+

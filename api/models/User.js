@@ -19,7 +19,7 @@ const userSchema = new Schema({
         require: true
     },
 
-    trips: [{ type: ObjectId, ref: "Origami" }],
+    trips: [{ type: ObjectId, ref: "Order" }],
 
     isAdmin: {
         type: Boolean,

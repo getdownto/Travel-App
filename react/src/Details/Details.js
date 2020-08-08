@@ -7,6 +7,8 @@ import SubmitButton from '../SubmitButton/SubmitButton'
 import Modal from '../Modal/Modal'
 import OrderSummary from '../OrderSummary/OrderSummary'
 import AuthContext from '../Context'
+import orderService from '../services/order-service'
+import history from '../history'
 import './Details.css'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
@@ -30,7 +32,7 @@ class Details extends React.Component {
         console.log(this.props.match.params.id)
         const id = this.props.match.params.id
         travelService.details(id).then(loadedTrip => {
-            if(moment(loadedTrip.startDate).isBetween(moment(), endDate)) {
+            if (moment(loadedTrip.startDate).isBetween(moment(), endDate)) {
                 discount = true
             }
             this.setState({ loadedTrip, totalPrice: discount ? 0.85 * loadedTrip.price : loadedTrip.price, discount })
@@ -74,6 +76,11 @@ class Details extends React.Component {
         this.setState({ purchased: !this.state.purchased })
     }
 
+    confirmOrder = () => {
+        orderService.create(this.state.loadedTrip._id, this.state.totalPrice, this.state.additionalTrips, this.context.id)
+            .then(history.push('/'))
+    }
+
     render() {
         let trips = null
         const id = this.props.match.params.id
@@ -86,7 +93,8 @@ class Details extends React.Component {
                             mainTrip={this.state.loadedTrip.destination}
                             mainTripPrice={this.state.discount ? 0.85 * this.state.loadedTrip.price : this.state.loadedTrip.price}
                             additionalTrips={this.state.additionalTrips}
-                            totalPrice={this.state.totalPrice} />
+                            totalPrice={this.state.totalPrice}
+                            submit={this.confirmOrder} />
                     </Modal> : null}
                 <div className="Details">
                     <h2 className="Title">{this.state.loadedTrip.destination}</h2>
@@ -96,10 +104,10 @@ class Details extends React.Component {
                     <div className="ItemCart">
                         <h2>Date and Price</h2>
                         <div className="DateContainer">
-                        {this.state.discount ? <div className="PriceContainer">
-                    <p className="Price">${(0.85 * this.state.loadedTrip.price).toFixed(2)}</p>
-                    <p className="OldPrice">${this.state.loadedTrip.price.toFixed(2)}</p>
-                </div> : <p className="Price">${this.state.loadedTrip.price.toFixed(2)}</p>}
+                            {this.state.discount ? <div className="PriceContainer">
+                                <p className="Price">${(0.85 * this.state.loadedTrip.price).toFixed(2)}</p>
+                                <p className="OldPrice">${this.state.loadedTrip.price.toFixed(2)}</p>
+                            </div> : <p className="Price">${this.state.loadedTrip.price.toFixed(2)}</p>}
                             <p className="DateP">{moment(this.state.loadedTrip.startDate).format('DD/MM/YYYY')}</p>
                             <div className="DurationContainer">
                                 <img className="Calendar" src="/calendar.svg" alt="img" />
@@ -123,8 +131,8 @@ class Details extends React.Component {
                                 clicked={this.additionalClickHandler}
                                 visible={this.state.visible && this.state.visible[index]} />
                         }) : null}
-                        {this.context.isAdmin === true ? <SubmitButton><Link to={`/edit/${id}`}>EDIT</Link></SubmitButton> : <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>}
-                    
+                    {this.context.isAdmin === true ? <SubmitButton><Link to={`/edit/${id}`}>EDIT</Link></SubmitButton> : <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>}
+
                 </div>
             </Aux>
             : <p>Loading...</p>

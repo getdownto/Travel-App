@@ -8,6 +8,7 @@ import Items from './Items/Items'
 import Footer from './Footer/Footer'
 import Login from './Login/Login'
 import Register from './Register/Register'
+import UserProfile from './UserProfile/UserProfile'
 import CreateTrip from './CreateTrip/CreateTrip'
 import Calendar from './Calendar/Calendar'
 import LastMinute from './/LastMinute/LastMinute'
@@ -21,13 +22,15 @@ import './App.css';
 import './Grid.css'
 import history from './history';
 import Aux from './hoc/Auxiliary';
+import { relativeTimeThreshold } from 'moment';
 
 class App extends React.Component {
 
   state = {
     isLogged: false,
     isAdmin: false,
-    user: null
+    user: null,
+    id: null
   }
 
   parseCookiesHandler = () => {
@@ -36,11 +39,11 @@ class App extends React.Component {
       acc[cookieName] = cookieValue
       return acc
     }, {})
-    return cookies['x-auth-token'] !== null && cookies['x-auth-token'] !== undefined
+    return cookies
   }
 
   logIn = (user) => {
-    this.setState({ isLogged: true, isAdmin: JSON.parse(user).isAdmin, user: JSON.parse(user) })
+    this.setState({ isLogged: true, isAdmin: JSON.parse(user).isAdmin, id: JSON.parse(user).id, user: JSON.parse(user) })
   }
 
   logOut = () => {
@@ -48,8 +51,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if(this.parseCookiesHandler()) {
-      this.setState({isLogged: true})
+    const cookies = this.parseCookiesHandler()
+    console.log('all cookies', cookies['x-auth-token'])
+    if( cookies['x-auth-token'] !== null && cookies['x-auth-token'] !== undefined) {
+      const id = cookies['x-auth-token'].split('%3A')[1]
+      this.setState({isLogged: true, id})
+      console.log(id)
     }
   }
 
@@ -57,7 +64,7 @@ class App extends React.Component {
     console.log('logged', this.state.user);
     console.log('state', this.state);
     return (
-      <AuthContext.Provider value={{isLogged: this.state.isLogged, isAdmin: this.state.isAdmin, user: this.state.user, logIn: this.logIn, logOut: this.logOut}}>
+      <AuthContext.Provider value={{isLogged: this.state.isLogged, isAdmin: this.state.isAdmin, id: this.state.id, user: this.state.user, logIn: this.logIn, logOut: this.logOut}}>
         <Router history={history}>
           <div className="App">
             <ScrollToTop>
@@ -102,6 +109,7 @@ class App extends React.Component {
                   <Route path='/destinations' exact component={Destinations} />
                   <Route path='/:id' exact component={this.state.isLogged ? Details : Login } isAdmin={this.state.isAdmin} />
                   <Route path='/edit/:id' exact component={this.state.isAdmin ? EditTrip : Login} />
+                  <Route path='/profile/:id' exact component={this.state.isLogged ? UserProfile : Login} />
                 </Switch>
               </Layout>
             </ScrollToTop>

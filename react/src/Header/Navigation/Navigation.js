@@ -30,8 +30,13 @@ class Navigation extends React.Component {
     }
 
     render () {
-        console.log(this.props)
-        const loggedInBtn = this.props.isAdmin ? <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> : <button className="LogoutBtn" onClick={this.logout}>LOGOUT</button>
+        const id = this.context.id
+        console.log('props', this.props)
+        const userProfile = <Link to={`/profile/${id}`} className="Profile">
+            <img src="/user.svg" alt="img" />
+            <p>My Profile</p>
+        </Link>
+       // const loggedInBtn = this.props.isAdmin ? <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> : <button className="LogoutBtn" onClick={this.logout}>LOGOUT</button>
         return (
             <nav id="nav">
                 <div className={this.props.className}>
@@ -42,7 +47,7 @@ class Navigation extends React.Component {
                         <li><Link to="/contacts">CONTACTS</Link></li>
                     </ul>
                     {this.props.isLogged === false ? 
-                    <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button> : loggedInBtn }
+                    <button className="LoginBtn"><Link to='/login'>LOGIN</Link></button> : userProfile }
                 </div>
             </nav>
         )

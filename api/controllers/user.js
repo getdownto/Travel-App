@@ -4,8 +4,13 @@ const utils = require('../utils');
 
 module.exports = {
     get: (req, res, next) => {
-        models.User.find()
-            .then((users) => res.send(users))
+        const id = req.query.id
+        models.User.findById(id).populate({
+            path: 'trips',
+            // Get friends of friends - populate the 'friends' array for every friend
+            populate: { path: 'mainTrip' }
+        })
+            .then((user) => res.send(user))
             .catch(next)
     },
 
@@ -34,7 +39,8 @@ module.exports = {
                     }
 
                     const token = utils.jwt.createToken({ id: user._id });
-                    res.cookie(config.authCookieName, token).send(userObj);
+                    const cookieValue = `${token}:${userObj.id}`
+                    res.cookie(config.authCookieName, cookieValue).send(userObj);
                 })
                 .catch(next);
         },
