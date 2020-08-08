@@ -37,7 +37,7 @@ class SearchResults extends React.Component {
         const endDate = moment().add(7, 'days')
         // console.log('val', this.state.search)
         // console.log('tr', this.state.trips)
-        const renderedTrips = trips !== undefined && trips.length > 0 ?
+        const renderedTrips = trips !== null && trips !== undefined && trips.length > 0 ?
         trips.map(trip => {
             let discount = false
             if(moment(trip.startDate).isBetween(moment(), endDate)) {
@@ -52,8 +52,7 @@ class SearchResults extends React.Component {
                 key={trip._id}
                 id={trip._id}
                 discount={discount} />
-        })
-            : <div>No trips found.</div>
+        }) : <div>No trips found.</div>
         return (
             <Aux>
                 <Welcome welcome="Search Results" />
