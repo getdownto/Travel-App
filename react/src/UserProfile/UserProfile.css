@@ -9,6 +9,7 @@
 }
 
 .Logout {
+    display: block;
     border: none;
     background-color: transparent;
     margin-top: 10%;
@@ -19,4 +20,50 @@
 
 .Logout:hover {
     border-bottom: 1.2px solid #6e6e6e;
+}
+
+.Clickable:hover {
+    text-decoration: underline;
+}
+
+.Clickable {
+    cursor: pointer;
+    border-bottom: 1.2px solid transparent;
+}
+
+.mainHeading {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.UserContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 5vh;
+    box-shadow: 3px 3px 12px #cecece56;
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+    transition: all .2s ease-in-out;
+    padding: 10px;
+    margin: 10px 0;
+    width: 90%;
+}
+
+.GridItem {
+    width: 15vw;
+    text-align: left;
+    margin: auto;
+}
+
+.GridBtn {
+    border: none;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.GridBtn:hover {
+   background-color: rgb(233, 233, 233);
 }

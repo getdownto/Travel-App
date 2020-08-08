@@ -23,6 +23,7 @@ import './Grid.css'
 import history from './history';
 import Aux from './hoc/Auxiliary';
 import { relativeTimeThreshold } from 'moment';
+import userService from './services/user-service';
 
 class App extends React.Component {
 
@@ -55,8 +56,10 @@ class App extends React.Component {
     console.log('all cookies', cookies['x-auth-token'])
     if( cookies['x-auth-token'] !== null && cookies['x-auth-token'] !== undefined) {
       const id = cookies['x-auth-token'].split('%3A')[1]
-      this.setState({isLogged: true, id})
-      console.log(id)
+      userService.load(id).then(user => {
+        this.setState({isLogged: true, id, isAdmin: user.isAdmin, user})
+      })
+     // console.log(id)
     }
   }
 

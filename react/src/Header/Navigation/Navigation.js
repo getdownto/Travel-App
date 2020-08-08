@@ -34,7 +34,7 @@ class Navigation extends React.Component {
         console.log('props', this.props)
         const userProfile = <Link to={`/profile/${id}`} className="Profile">
             <img src="/user.svg" alt="img" />
-            <p>My Profile</p>
+            <p>{this.context.isAdmin ? 'Admin Panel' : 'My Profile'}</p>
         </Link>
        // const loggedInBtn = this.props.isAdmin ? <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> : <button className="LogoutBtn" onClick={this.logout}>LOGOUT</button>
         return (

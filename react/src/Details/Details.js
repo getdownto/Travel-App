@@ -22,20 +22,25 @@ class Details extends React.Component {
         additionalTrips: null,
         visible: {},
         purchased: false,
-        discount: false
+        discount: false,
+        expired: false
     }
 
     static contextType = AuthContext
 
     componentDidMount() {
         let discount = false
+        let expired = false
         console.log(this.props.match.params.id)
         const id = this.props.match.params.id
         travelService.details(id).then(loadedTrip => {
             if (moment(loadedTrip.startDate).isBetween(moment(), endDate)) {
                 discount = true
             }
-            this.setState({ loadedTrip, totalPrice: discount ? 0.85 * loadedTrip.price : loadedTrip.price, discount })
+            if(moment(loadedTrip.startDate).isBefore(moment())) {
+                expired = true
+            }
+            this.setState({ loadedTrip, totalPrice: discount ? 0.85 * loadedTrip.price : loadedTrip.price, discount, expired })
         })
     }
 
@@ -84,6 +89,8 @@ class Details extends React.Component {
     render() {
         let trips = null
         const id = this.props.match.params.id
+        const button = this.context.isAdmin === true ? <SubmitButton><Link to={`/edit/${id}`}>EDIT</Link></SubmitButton> : <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>
+        const notAvailable = <div className="NotAvailable">This trip is no longer available for purchase.</div>
         console.log('details props', this.props);
         const content = this.state.loadedTrip ?
             <Aux>
@@ -129,10 +136,10 @@ class Details extends React.Component {
                                 destination={trip.trip}
                                 price={Number(trip.price).toFixed(2)}
                                 clicked={this.additionalClickHandler}
-                                visible={this.state.visible && this.state.visible[index]} />
+                                visible={this.state.visible && this.state.visible[index]}
+                                expired={this.state.expired} />
                         }) : null}
-                    {this.context.isAdmin === true ? <SubmitButton><Link to={`/edit/${id}`}>EDIT</Link></SubmitButton> : <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>}
-
+                    {this.state.expired ? notAvailable: button}
                 </div>
             </Aux>
             : <p>Loading...</p>

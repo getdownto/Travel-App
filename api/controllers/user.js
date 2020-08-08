@@ -13,6 +13,11 @@ module.exports = {
             .then((user) => res.send(user))
             .catch(next)
     },
+    getAll: (req, res, next) => {
+        models.User.find().then((users) => res.send(users))
+            .catch(next)
+    },
+
 
     post: {
         register: (req, res, next) => {
@@ -60,8 +65,8 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { username, password } = req.body;
-        models.User.update({ _id: id }, { username, password })
+        //const { isAdmin } = req.body;
+        models.User.update({ _id: id }, { isAdmin: true })
             .then((updatedUser) => res.send(updatedUser))
             .catch(next)
     },

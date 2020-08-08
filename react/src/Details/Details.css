@@ -75,3 +75,8 @@
     text-decoration: none;
     color: rgb(49, 49, 49);
 }
+
+.NotAvailable {
+    margin: 20px;
+    text-align: center;
+}
