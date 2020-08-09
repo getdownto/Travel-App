@@ -34,6 +34,20 @@ const userService = {
             credentials: 'include'
         }).then(res => res.text())
     },
+    verify: function(token) {
+        return fetch('http://localhost:9999/api/user/verify', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+
+            },
+            body: JSON.stringify({
+                token
+            }),
+            credentials: 'include'
+        }).then(res => res.json())
+    },
     logout: function() {
         return fetch('http://localhost:9999/api/user/logout', {
             method: 'POST',
@@ -48,9 +62,7 @@ const userService = {
                 'Content-Type': 'application/json',
 
             },
-            body: JSON.stringify({
-
-            }),
+            body: JSON.stringify({}),
             credentials: 'include'
         }).then(res => res.text())
     },

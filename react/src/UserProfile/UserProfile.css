@@ -2,6 +2,7 @@
     text-align: left;
     margin-left: 10% !important;
     color: #6e6e6e;
+    border-right: 1px solid #e0e0e0;
 }
 
 .ProfileHeading {
@@ -34,6 +35,7 @@
 .mainHeading {
     margin-top: 20px;
     text-align: left;
+    margin-left: 14%;
 }
 
 .UserContainer {
@@ -66,4 +68,8 @@
 
 .GridBtn:hover {
    background-color: rgb(233, 233, 233);
+}
+
+.Border {
+
 }

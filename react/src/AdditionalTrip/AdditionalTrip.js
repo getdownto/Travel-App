@@ -1,16 +1,16 @@
 import React from 'react'
-import './AdditionalTrip.css'
+import styles from './AdditionalTrip.module.css'
 
 const AdditionalTrip = (props) => {
     console.log(props);
     return (
-        <div className="ItemCart Aligned">
-            <div className="CartContent">
+        <div className={`${styles.ItemCart} ${styles.Aligned}`}>
+            <div className={styles.CartContent}>
                 <p>{props.destination}</p>
-                <p className="InlinePrice">${props.price}</p>
+                <p className={styles.InlinePrice}>${props.price}</p>
             </div>
-            {!props.expired ? <button className="Btn" id={props.id} onClick={props.clicked}>Add</button> : null}
-            {props.visible ? <img className="confirmIcon" src="/confirm.svg"></img> : null}
+            {!props.expired ? <button className={styles.Btn} id={props.id} onClick={props.clicked}>Add</button> : null}
+            {props.visible ? <img className={styles.confirmIcon} src="/confirm.svg"></img> : null}
         </div>
     )
 }

@@ -44,10 +44,37 @@ module.exports = {
                     }
 
                     const token = utils.jwt.createToken({ id: user._id });
-                    const cookieValue = `${token}:${userObj.id}`
-                    res.cookie(config.authCookieName, cookieValue).send(userObj);
+                    //const cookieValue = `${token}:${userObj.id}`
+                    res.cookie(config.authCookieName, token).send(user);
                 })
                 .catch(next);
+        },
+
+        verifyLogin: (req, res, next) => {
+            const token = req.body.token
+    
+            Promise.all([
+                utils.jwt.verifyToken(token),
+                models.TokenBlacklist.findOne({ token })
+            ])
+                .then(([data, blacklistToken]) => {
+                    if (blacklistToken) { return Promise.reject(new Error('blacklisted token')) }
+    
+                    models.User.findById(data.id)
+                        .then((user) => {
+                            res.send({verified: true, user})
+                        });
+                })
+                .catch(err => {
+                    //if (!redirectAuthenticated) { next(); return; }
+    
+                    if (['token expired', 'blacklisted token', 'jwt must be provided'].includes(err.message)) {
+                        res.status(401).send('UNAUTHORIZED!');
+                        return;
+                    }
+    
+                    res.send({verified: false})
+                })
         },
 
         logout: (req, res, next) => {
@@ -65,6 +92,7 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
+        console.log(id);
         //const { isAdmin } = req.body;
         models.User.update({ _id: id }, { isAdmin: true })
             .then((updatedUser) => res.send(updatedUser))

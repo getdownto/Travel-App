@@ -16,6 +16,7 @@ import SearchResults from './SearchResults/SearchResults'
 import Destinations from './Destinations/Destinations'
 import EditTrip from './EditTrip/EditTrip'
 import Details from './Details/Details'
+import Loading from './Loading/Loading'
 import { Router, Route, Switch } from 'react-router-dom'
 import AuthContext from './Context'
 import './App.css';
@@ -28,7 +29,7 @@ import userService from './services/user-service';
 class App extends React.Component {
 
   state = {
-    isLogged: false,
+    isLogged: null,
     isAdmin: false,
     user: null,
     id: null
@@ -44,35 +45,53 @@ class App extends React.Component {
   }
 
   logIn = (user) => {
-    this.setState({ isLogged: true, isAdmin: JSON.parse(user).isAdmin, id: JSON.parse(user).id, user: JSON.parse(user) })
+    this.setState({ isLogged: true, isAdmin: JSON.parse(user).isAdmin, id: JSON.parse(user)._id, user: JSON.parse(user) })
+    console.log('state after login', this.state)
   }
 
   logOut = () => {
-    this.setState({ isLogged: false, user: null })
+    this.setState({ isLogged: false, user: null, isAdmin: false, id: null })
   }
 
   componentDidMount() {
     const cookies = this.parseCookiesHandler()
     console.log('all cookies', cookies['x-auth-token'])
-    if( cookies['x-auth-token'] !== null && cookies['x-auth-token'] !== undefined) {
-      const id = cookies['x-auth-token'].split('%3A')[1]
-      userService.load(id).then(user => {
-        this.setState({isLogged: true, id, isAdmin: user.isAdmin, user})
+    if (cookies['x-auth-token'] !== null && cookies['x-auth-token'] !== undefined) {
+      //const id = cookies['x-auth-token'].split('%3A')[1]
+      const token = cookies['x-auth-token']
+      if(!token) {
+        this.logOut()
+        return
+      }
+      userService.verify(token).then(data => {
+        console.log(data)
+        if (data.user !== undefined) {
+          const user = data.user
+          console.log('is this my user', data)
+          // userService.load(id).then(user => {
+          this.setState({ isLogged: true, id: user._id, isAdmin: user.isAdmin, user })
+          // })
+        }
       })
-     // console.log(id)
+      // console.log(id)
     }
   }
 
   render() {
     console.log('logged', this.state.user);
     console.log('state', this.state);
+
+    // if (this.state.isLogged === null) {
+    //   return <Loading />
+    // }
+
     return (
-      <AuthContext.Provider value={{isLogged: this.state.isLogged, isAdmin: this.state.isAdmin, id: this.state.id, user: this.state.user, logIn: this.logIn, logOut: this.logOut}}>
+      <AuthContext.Provider value={{ isLogged: this.state.isLogged, isAdmin: this.state.isAdmin, id: this.state.id, user: this.state.user, logIn: this.logIn, logOut: this.logOut }}>
         <Router history={history}>
           <div className="App">
             <ScrollToTop>
               <Layout>
-                <Navigation className="NavigationStandAlone" isLogged={this.state.isLogged} isAdmin={this.state.isAdmin} />
+                <Navigation isLogged={this.state.isLogged} isAdmin={this.state.isAdmin} />
                 <Switch>
                   <Route path="/" exact>
                     <header>
@@ -110,9 +129,10 @@ class App extends React.Component {
                   <Route path='/lastminute' exact component={LastMinute} />
                   <Route path='/search' exact component={SearchResults} />
                   <Route path='/destinations' exact component={Destinations} />
-                  <Route path='/:id' exact component={this.state.isLogged ? Details : Login } isAdmin={this.state.isAdmin} />
-                  <Route path='/edit/:id' exact component={this.state.isAdmin ? EditTrip : Login} />
-                  <Route path='/profile/:id' exact component={this.state.isLogged ? UserProfile : Login} />
+                  <Route path='/profile/' exact component={this.state.isLogged ? UserProfile : Login} />
+                  <Route path='/:id' exact component={this.state.isLogged ? Details : Login} isAdmin={this.state.isAdmin} />
+                  <Route path='/edit/:id' exact component={this.state.isAdmin ? EditTrip : null} />
+
                 </Switch>
               </Layout>
             </ScrollToTop>

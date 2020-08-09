@@ -13,7 +13,7 @@ const OrderCart = (props) => {
             </div>
         })
     return (
-        <Link to={`/${props.id}`}>
+        <div>
             <div className="OrderCart">
                 <div className="SmallImage">
                     <img className="Cover" src={props.imageUrl} alt="img" />
@@ -38,7 +38,7 @@ const OrderCart = (props) => {
                         </div>
                 </div>
             </div>
-        </Link>
+        </div>
     )
 }
 export default OrderCart

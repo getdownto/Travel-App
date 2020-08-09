@@ -3,7 +3,7 @@ import moment from 'moment'
 import Aux from '../hoc/Auxiliary'
 import Welcome from '../Welcome/Welcome'
 import Filtered from '../Filtered/Filtered'
-import './Calendar.css'
+import styles from './Calendar.module.css'
 
 const date = moment(new Date(), 'YYYY/MMM/DD')
 const currentMonth = date.format('MMMM')
@@ -24,14 +24,14 @@ class Calendar extends React.Component {
     render() {
         let classString = ''
         const monthTiles = currentMonthArr.map((curr, index) => {
-            this.state.selectedMonth === curr.toLowerCase() ? classString = 'SingleTile Active' : classString = 'SingleTile'
-            return <div className={classString} id={index} key={curr} onClick={this.clickHandler} >{curr}</div>
+            this.state.selectedMonth === curr.toLowerCase() ? classString = [styles.SingleTile, styles.Active] : classString = [styles.SingleTile]
+            return <div className={classString.join(' ')} id={index} key={curr} onClick={this.clickHandler} >{curr}</div>
             
         })
         return (
             <Aux>
-                <Welcome welcome="Calendar" />
-                <div className="Tiles">
+                <Welcome welcome={styles.Calendar} />
+                <div className={styles.Tiles}>
                     {monthTiles}
                 </div>
                 <Filtered filter={this.state.selectedMonth} />

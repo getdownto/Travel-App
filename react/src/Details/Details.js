@@ -5,11 +5,12 @@ import Aux from '../hoc/Auxiliary'
 import AdditionalTrip from '../AdditionalTrip/AdditionalTrip'
 import SubmitButton from '../SubmitButton/SubmitButton'
 import Modal from '../Modal/Modal'
+import Loading from '../Loading/Loading'
 import OrderSummary from '../OrderSummary/OrderSummary'
 import AuthContext from '../Context'
 import orderService from '../services/order-service'
 import history from '../history'
-import './Details.css'
+import styles from './Details.module.css'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 
@@ -90,7 +91,7 @@ class Details extends React.Component {
         let trips = null
         const id = this.props.match.params.id
         const button = this.context.isAdmin === true ? <SubmitButton><Link to={`/edit/${id}`}>EDIT</Link></SubmitButton> : <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>
-        const notAvailable = <div className="NotAvailable">This trip is no longer available for purchase.</div>
+        const notAvailable = <div className={styles.NotAvailable}>This trip is no longer available for purchase.</div>
         console.log('details props', this.props);
         const content = this.state.loadedTrip ?
             <Aux>
@@ -103,31 +104,31 @@ class Details extends React.Component {
                             totalPrice={this.state.totalPrice}
                             submit={this.confirmOrder} />
                     </Modal> : null}
-                <div className="Details">
-                    <h2 className="Title">{this.state.loadedTrip.destination}</h2>
-                    <div className="Image">
-                        <img className="Cover" src={this.state.loadedTrip.imageUrl} />
+                <div className={styles.Details}>
+                    <h2 className={styles.Title}>{this.state.loadedTrip.destination}</h2>
+                    <div className={styles.Image}>
+                        <img className={styles.Cover} src={this.state.loadedTrip.imageUrl} />
                     </div>
-                    <div className="ItemCart">
+                    <div className={styles.ItemCart}>
                         <h2>Date and Price</h2>
-                        <div className="DateContainer">
-                            {this.state.discount ? <div className="PriceContainer">
-                                <p className="Price">${(0.85 * this.state.loadedTrip.price).toFixed(2)}</p>
-                                <p className="OldPrice">${this.state.loadedTrip.price.toFixed(2)}</p>
-                            </div> : <p className="Price">${this.state.loadedTrip.price.toFixed(2)}</p>}
-                            <p className="DateP">{moment(this.state.loadedTrip.startDate).format('DD/MM/YYYY')}</p>
-                            <div className="DurationContainer">
-                                <img className="Calendar" src="/calendar.svg" alt="img" />
+                        <div className={styles.DateContainer}>
+                            {this.state.discount ? <div className={styles.PriceContainer}>
+                                <p className={styles.Price}>${(0.85 * this.state.loadedTrip.price).toFixed(2)}</p>
+                                <p className={styles.OldPrice}>${this.state.loadedTrip.price.toFixed(2)}</p>
+                            </div> : <p className={styles.Price}>${this.state.loadedTrip.price.toFixed(2)}</p>}
+                            <p className={styles.DateP}>{moment(this.state.loadedTrip.startDate).format('DD/MM/YYYY')}</p>
+                            <div className={styles.DurationContainer}>
+                                <img className={styles.Calendar} src="/calendar.svg" alt="img" />
                                 <p>{this.state.loadedTrip.duration} days</p>
                             </div>
                         </div>
                     </div>
-                    <div className="ItemCart">
+                    <div className={styles.ItemCart}>
                         <h2>Trip Description</h2>
                         <p>{this.state.loadedTrip.description}</p>
                     </div>
                     {this.state.loadedTrip.additionalTrips.length > 0 ?
-                        <h2 className="Title">Additional Trips</h2> : null}
+                        <h2 className={styles.Title}>Additional Trips</h2> : null}
                     {this.state.loadedTrip.additionalTrips.length > 0 ?
                         trips = this.state.loadedTrip.additionalTrips.map((trip, index) => {
                             return <AdditionalTrip
@@ -142,7 +143,7 @@ class Details extends React.Component {
                     {this.state.expired ? notAvailable: button}
                 </div>
             </Aux>
-            : <p>Loading...</p>
+            : <Loading />
         console.log(this.state.loadedTrip)
         return (
             <Aux>

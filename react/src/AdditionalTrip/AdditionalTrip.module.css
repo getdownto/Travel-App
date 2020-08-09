@@ -1,3 +1,16 @@
+.ItemCart {
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    margin: auto;
+    border-radius: 5px;
+    min-height: 5vh;
+    padding: 20px;
+    margin-top: 2vh;
+    box-shadow: 3px 3px 12px #cecece56;
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+}
+
 .CartContent {
     display: flex;
     justify-content: space-between;

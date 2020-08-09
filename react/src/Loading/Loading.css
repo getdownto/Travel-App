@@ -1,0 +1,9 @@
+.LoadingContainer {
+    width: 100%;
+    display:flex;
+}
+
+.LoadingContainer img {
+    width: 7vh;
+    margin: 47vh auto;
+}

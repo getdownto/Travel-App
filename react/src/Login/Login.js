@@ -40,6 +40,7 @@ class Login extends React.Component {
                 userService.login(this.state.username, this.state.password).then((user) => {
                     this.context.logIn(user)
                     history.push('/')
+                    console.log('logged in user', user);
                 })
             })
             .catch(err => {

@@ -2,7 +2,7 @@ import React from 'react'
 import DatePicker from "react-datepicker";
 import DynamicInput from './DynamicInput/DynamicInput'
 import "react-datepicker/dist/react-datepicker.css"
-import './CreateTrip.css'
+import styles from './CreateTrip.module.css'
 import Welcome from '../Welcome/Welcome'
 import history from '../history'
 import travelService from '../services/travel-service'
@@ -71,7 +71,7 @@ class CreateTrip extends React.Component {
         return (
             <div>
                 <Welcome welcome="Create Trip" />
-                <form className="CreateTrip">
+                <form className={styles.CreateTrip}>
                     <input type="text" name="destination" placeholder="Destination" value={this.state.destination} onChange={this.changeFiealdHandler} />
                     <input type="text" name="price" placeholder="Price" value={this.state.price} onChange={this.changeFiealdHandler} />
                     <input type="text" name="imageUrl" placeholder="Image URL" value={this.state.imageUrl} onChange={this.changeFiealdHandler} />
@@ -85,9 +85,9 @@ class CreateTrip extends React.Component {
                     <input type="number" name="duration" placeholder="Duration" value={this.state.duration} onChange={this.changeFiealdHandler} />
                     <label>Description</label>
                     <textarea rows="6" name="description" value={this.state.description} onChange={this.changeFiealdHandler} />
-                    <button className="Additional" onClick={(e) => this.addFielsHandler(e)}>Add Additional Trips</button>
+                    <button className={styles.Additional} onClick={(e) => this.addFielsHandler(e)}>Add Additional Trips</button>
                     {inputFiellds}
-                    <button className="Submit" onClick={(e) => this.submitForm(e)}>CreateTrip</button>
+                    <button className={styles.Submit} onClick={(e) => this.submitForm(e)}>CreateTrip</button>
                 </form>
             </div>
         )

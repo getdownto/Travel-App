@@ -32,7 +32,7 @@ class UserProfile extends React.Component {
     componentDidMount() {
         // console.log('context', this.context.id)
         const isAdmin = this.context.isAdmin
-        const id = this.props.match.params.id
+        const id = this.context.id
         userService.load(id).then(user => {
             console.log('user', user.username)
             this.setState({ username: user.username, orders: user.trips, renderedOrders: user.trips, text: 'All Orders' })
@@ -68,6 +68,7 @@ class UserProfile extends React.Component {
 
     makeAdmin = (e) => {
         const id = e.target.id
+        console.log('is this my id', id);
         userService.makeAdmin(id).then(user => {
             console.log('made admin', user);
             this.setState({updated: true})
@@ -83,7 +84,7 @@ class UserProfile extends React.Component {
             <Aux>
                 <Welcome welcome={isAdmin ? "Admin Panel" : "My Profile"} />
                 <div className="Background">
-                    <div className="ProfileConatiner col span-1-of-4 box">
+                    <div className="ProfileConatiner col span-1-of-5 box">
                         <h3 className="ProfileHeading">PROFILE</h3>
                         <p>Hello {this.state.username}!</p>
                         <h3 className="ProfileHeading">{isAdmin ? 'MY ACTIONS' : 'MY ORDERS'}</h3>
@@ -93,7 +94,7 @@ class UserProfile extends React.Component {
                         <button className="Logout" onClick={this.logout}>Logout</button>
                     </div>
                     {!isAdmin &&
-                        <div className="col span-3-of-4 box">
+                        <div className="Border col span-3-of-4 box">
                             <h2 className="mainHeading">{this.state.text}</h2>
                             {orders !== null && orders.length > 0 ? orders.map(order => <OrderCart
                                 mainTrip={order.mainTrip.destination}
@@ -106,7 +107,7 @@ class UserProfile extends React.Component {
                                 key={order._id} />) : <p>No orders yet.</p>}
                         </div>}
                     {isAdmin &&
-                        <div className="col span-3-of-4 box">
+                        <div className="Border col span-3-of-4 box">
                             <h2 className="mainHeading">{this.state.text}</h2>
                             {users !== null ? users.map(user =>
                                 <div className="UserContainer">

@@ -3,7 +3,7 @@ import Aux from '../hoc/Auxiliary'
 import Welcome from '../Welcome/Welcome'
 import FilteredDest from '../FilteredDest/FilteredDest'
 import travelService from '../services/travel-service'
-import './Destinations.css'
+import styles from './Destinations.module.css'
 
 class Destinations extends React.Component {
     state = {
@@ -32,13 +32,13 @@ class Destinations extends React.Component {
 
         // })
         const destinationsList = this.state.destinations ? this.state.destinations.map((destination, index) => {
-            this.state.selectedDestination === destination.toLowerCase() ? classString = 'SingleTile Selected' : classString = 'SingleTile'
-            return <li className={classString} key={index} id={index} onClick={this.clickHandler}>{destination}</li>
+            this.state.selectedDestination === destination.toLowerCase() ? classString = [styles.SingleTile, styles.Selected] : classString = [styles.SingleTile]
+            return <li className={classString.join(' ')} key={index} id={index} onClick={this.clickHandler}>{destination}</li>
         }) : null
         return (
             <Aux>
-                <Welcome welcome="Destinations" />
-                <ul className="DestinationsList">
+                <Welcome welcome={styles.Destinations} />
+                <ul className={styles.DestinationsList}>
                     {destinationsList}
                 </ul>
                 <FilteredDest filterD={this.state.selectedDestination} />
