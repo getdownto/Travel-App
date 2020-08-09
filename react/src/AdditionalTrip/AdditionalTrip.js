@@ -10,7 +10,7 @@ const AdditionalTrip = (props) => {
                 <p className={styles.InlinePrice}>${props.price}</p>
             </div>
             {!props.expired ? <button className={styles.Btn} id={props.id} onClick={props.clicked}>Add</button> : null}
-            {props.visible ? <img className={styles.confirmIcon} src="/confirm.svg"></img> : null}
+            {props.visible ? <img className={styles.confirmIcon} src="/confirm.svg" alt="confirm"></img> : null}
         </div>
     )
 }

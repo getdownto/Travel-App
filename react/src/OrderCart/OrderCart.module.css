@@ -50,11 +50,11 @@
     height: 17px;
 }
 
-.MDuration {
+.Duration {
     display: inline-flex;
 }
 
-.MDuration p {
+.Duration p {
     font-size: 2vh;
     width: 7vh;
 }
@@ -71,7 +71,7 @@
     margin-top: 1.5vh;
 }
 
-.MDate {
+.Date {
     text-align: left;
     padding-right: 30px;
     font-size: 1.9vh;

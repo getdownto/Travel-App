@@ -1,6 +1,5 @@
 import React from 'react'
 import Aux from '../hoc/Auxiliary'
-import '../Layout/Layout.css'
 
 
 class Layout extends React.Component {

@@ -1,9 +1,9 @@
 import React from 'react'
-import './Footer.css'
+import styles from './Footer.module.css'
 
 const Footer = (props) => {
     return (
-        <div className="Footer">
+        <div className={styles.Footer}>
             <p>OFF THE MAP</p>
             <p>Copyright 2020</p>
         </div>

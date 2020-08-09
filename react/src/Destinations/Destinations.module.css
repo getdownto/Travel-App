@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     list-style: none;
     margin: 10vh auto;
-    width: 70%;
+    max-width: 80%;
 }
 
 .DestinationsList li {

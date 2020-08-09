@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import Aux from '../hoc/Auxiliary'
 import Welcome from '../Welcome/Welcome'
-import Filtered from '../Filtered/Filtered'
+import Filtered from '../Items/Filtered'
 import styles from './Calendar.module.css'
 
 const date = moment(new Date(), 'YYYY/MMM/DD')
@@ -30,7 +30,7 @@ class Calendar extends React.Component {
         })
         return (
             <Aux>
-                <Welcome welcome={styles.Calendar} />
+                <Welcome welcome="Calendar" />
                 <div className={styles.Tiles}>
                     {monthTiles}
                 </div>

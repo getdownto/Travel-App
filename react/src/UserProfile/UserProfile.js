@@ -1,7 +1,6 @@
 import React from 'react'
 import userService from '../services/user-service'
 import Welcome from '../Welcome/Welcome'
-import orderService from '../services/order-service'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import OrderCart from '../OrderCart/OrderCart'
@@ -56,13 +55,13 @@ class UserProfile extends React.Component {
 
     showNew = (e) => {
         const all = this.state.orders
-        const renderedOrders = all && all.filter(order => moment(order.mainTrip.startDate).isSameOrAfter(moment())) || null
+        const renderedOrders = all ? all.filter(order => moment(order.mainTrip.startDate).isSameOrAfter(moment())) || null : null
         this.setState({ renderedOrders, text: e.target.innerText })
     }
 
     showOld = (e) => {
         const all = this.state.orders
-        const renderedOrders = all && all.filter(order => moment(order.mainTrip.startDate).isBefore(moment())) || null
+        const renderedOrders = all ? all.filter(order => moment(order.mainTrip.startDate).isBefore(moment())) || null : null
         this.setState({ renderedOrders, text: e.target.innerText })
     }
 

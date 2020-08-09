@@ -2,7 +2,6 @@ import React from 'react'
 import DatePicker from "react-datepicker";
 import DynamicInput from '../CreateTrip/DynamicInput/DynamicInput'
 import Welcome from '../Welcome/Welcome'
-import moment from 'moment'
 import history from '../history'
 import "react-datepicker/dist/react-datepicker.css"
 import './EditTrip.css'

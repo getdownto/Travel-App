@@ -107,7 +107,7 @@ class Details extends React.Component {
                 <div className={styles.Details}>
                     <h2 className={styles.Title}>{this.state.loadedTrip.destination}</h2>
                     <div className={styles.Image}>
-                        <img className={styles.Cover} src={this.state.loadedTrip.imageUrl} />
+                        <img className={styles.Cover} src={this.state.loadedTrip.imageUrl} alt="img" />
                     </div>
                     <div className={styles.ItemCart}>
                         <h2>Date and Price</h2>

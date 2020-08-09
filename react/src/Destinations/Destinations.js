@@ -1,7 +1,7 @@
 import React from 'react'
 import Aux from '../hoc/Auxiliary'
 import Welcome from '../Welcome/Welcome'
-import FilteredDest from '../FilteredDest/FilteredDest'
+import FilteredDest from '../Items/FilteredDest'
 import travelService from '../services/travel-service'
 import styles from './Destinations.module.css'
 
@@ -37,7 +37,7 @@ class Destinations extends React.Component {
         }) : null
         return (
             <Aux>
-                <Welcome welcome={styles.Destinations} />
+                <Welcome welcome="Destinations" />
                 <ul className={styles.DestinationsList}>
                     {destinationsList}
                 </ul>

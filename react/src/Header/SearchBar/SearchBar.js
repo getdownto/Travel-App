@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import travelService from '../../services/travel-service'
-import './SearchBar.css'
+import styles from './SearchBar.module.css'
 
 class SearchBar extends React.Component {
     state = {
@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
 
     submitOnEnter = (e) => {
         const key = e.keyCode || e.which;
-        if (key == 13) {
+        if (key === 13) {
             this.submitSearch();
         }
     }
@@ -36,10 +36,10 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <div className="Search" search={this.state.search}>
-                <input className="SearchBox" type="text" value={this.state.search} onChange={this.searchChangeHandler} onKeyPress={this.submitOnEnter} ></input>
+            <div className={styles.Search} search={this.state.search}>
+            <input className={styles.SearchBox} type="text" value={this.state.search} onChange={this.searchChangeHandler} onKeyPress={this.submitOnEnter} ></input>
 
-                <input type="button" className="SearchBtn" onClick={this.submitSearch} value="SEARCH"></input>
+                <input type="button" className={styles.SearchBtn} onClick={this.submitSearch} value="SEARCH"></input>
                 {this.state.trips !== null &&
           <Redirect to={{
             pathname: '/search',

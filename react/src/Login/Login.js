@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 import userService from '../services/user-service'
 import SubmitButton from '../SubmitButton/SubmitButton'
@@ -61,12 +61,12 @@ class Login extends React.Component {
                 <form className="Login">
                     <div className="FieldContainer">
                         <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.changeFieldHandler} />
-                        {this.state.errors && this.state.errors['username'] ? <img className="errorIcon" src="/close.svg"></img> : null}
+                        {this.state.errors && this.state.errors['username'] ? <img className="errorIcon" src="/close.svg" alt="error"></img> : null}
                     </div>
                     {this.state.errors && this.state.errors['username'] ? <p className="ErrorMessage">{this.state.errors.username[0]}</p> : null}
                     <div className="FieldContainer">
                         <input type="text" name="password" placeholder="Password" value={this.state.password} onChange={this.changeFieldHandler} />
-                        {this.state.errors && this.state.errors['password'] ? <img className="errorIcon" src="/close.svg"></img> : null}
+                        {this.state.errors && this.state.errors['password'] ? <img className="errorIcon" src="/close.svg" alt="error"></img> : null}
                     </div>
                     {this.state.errors && this.state.errors['password'] ? <p className="ErrorMessage">{this.state.errors.password[0]}</p> : null}
                     <SubmitButton submit={this.submitForm}>Login</SubmitButton>

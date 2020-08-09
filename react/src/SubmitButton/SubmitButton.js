@@ -1,10 +1,10 @@
 import React from 'react'
-import './SubmitButton.css'
+import styles from './SubmitButton.module.css'
 
 const SubmitButton = (props) => {
     return (
         <div>
-            <button className="SubmitBtn" onClick={props.submit}>{props.children}</button>
+            <button className={styles.SubmitBtn} onClick={props.submit}>{props.children}</button>
         </div>
     )
 }

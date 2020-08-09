@@ -3,28 +3,11 @@ import userService from '../../services/user-service'
 import history from '../../history'
 import AuthContext from '../../Context'
 import styles from './Navigation.module.css'
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class Navigation extends React.Component {
 
-    state = {
-        isSticky: false,
-        classList: [styles.NavigationStandAlone, styles.Sticky]
-    }
-
     static contextType = AuthContext
-
-    // componentDidMount() {
-    //     const classes = this.state.classList
-    //     window.addEventListener('scroll', () => {
-    //         const isTop = window.scrollY > 2
-    //         const nav = document.getElementById('nav')
-
-    //         if(isTop) {
-    //             this.setState({classList: [...classes, styles.Sticky]})
-    //         }
-    //     })
-    // }
 
     logout = () => {
         userService.logout().then(() => {
@@ -34,7 +17,6 @@ class Navigation extends React.Component {
     }
 
     render () {
-        const id = this.context.id
         console.log('props', this.props)
         const userProfile = <Link to={`/profile`} className={styles.Profile}>
             <img src="/user.svg" alt="img" />
@@ -42,8 +24,8 @@ class Navigation extends React.Component {
         </Link>
        // const loggedInBtn = this.props.isAdmin ? <button className="LoginBtn"><Link to='/create'>NEW TRIP</Link></button> : <button className="LogoutBtn" onClick={this.logout}>LOGOUT</button>
         return (
-            <nav id="nav">
-                <div className={ [...this.state.classList].join(' ') }>
+            <nav className={styles.Sticky}>
+                <div className={ styles.NavigationStandAlone }>
                     <p className={styles.Logo}>OFF THE MAP</p>
                     <ul className={styles.Menu}>
                         <li><Link to="/">HOME</Link></li>

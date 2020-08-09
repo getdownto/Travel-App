@@ -6,7 +6,6 @@ import '../Header/Header.css'
 
 const Header = (props) => {
     return (
-
         <Aux>
         <div className="HeroText">
             <h4>OFF THE MAP</h4>
