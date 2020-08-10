@@ -1,0 +1,22 @@
+.Heading {
+    font-size: 30vh;
+    font-weight: 700;
+}
+
+.Btn {
+    margin: 7vh auto;
+    padding: 15px;
+    border: none;
+    width: 30vh;
+    background-color: #FFF35F;
+    height: 3vh;
+    border-bottom-left-radius: 5vh;
+    border-bottom-right-radius: 5vh;
+    border-top-left-radius: 5vh;
+    border-top-right-radius: 5vh;
+    cursor: pointer;
+    outline: none;
+    text-transform: uppercase;
+    color: #383838;
+    font-weight: 600;
+}

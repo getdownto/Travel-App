@@ -5,7 +5,7 @@ import '../Grid.css'
 
 const ItemCart = (props) => {
     return (
-        <Link to={`/${props.id}`} className={`${styles.Cart} col span-1-of-3 box`}>
+        <Link to={`/details/${props.id}`} className={`${styles.Cart} col span-1-of-3 box`}>
             <p className={styles.Heading}>{props.destination}</p>
             <p className={styles.Date}>{props.startDate}</p>
             <div className={styles.FullImage}>

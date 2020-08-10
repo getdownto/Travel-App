@@ -16,6 +16,7 @@ import SearchResults from './Items/SearchResults'
 import Destinations from './Destinations/Destinations'
 import EditTrip from './EditTrip/EditTrip'
 import Details from './Details/Details'
+import Error from './Error/Error'
 import { Router, Route, Switch } from 'react-router-dom'
 import AuthContext from './Context'
 import './App.css';
@@ -114,10 +115,10 @@ class App extends React.Component {
                   <Route path='/lastminute' exact component={LastMinute} />
                   <Route path='/search' exact component={SearchResults} />
                   <Route path='/destinations' exact component={Destinations} />
-                  <Route path='/profile/' exact component={this.state.isLogged ? UserProfile : Login} />
-                  <Route path='/:id' exact component={this.state.isLogged ? Details : Login} isAdmin={this.state.isAdmin} />
-                  <Route path='/edit/:id' exact component={this.state.isAdmin ? EditTrip : null} />
-
+                  <Route path='/profile' exact component={this.state.isLogged ? UserProfile : Login} />
+                  <Route path='/details/:id' component={this.state.isLogged ? Details : Login} isAdmin={this.state.isAdmin} />
+                  <Route path='/edit/:id' component={this.state.isAdmin ? EditTrip : null} />
+                  <Route component={Error} />
                 </Switch>
               </Layout>
             </ScrollToTop>
