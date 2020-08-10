@@ -40,7 +40,7 @@ textarea {
 
 .react-datepicker-wrapper,
 .react-datepicker__input-container {
-    display: inline;
+    display: inline !important;
 }
 
 .Submit {
