@@ -1,13 +1,13 @@
 import React from 'react'
-import userService from '../services/user-service'
-import Welcome from '../Welcome/Welcome'
+import userService from '../../services/user-service'
+import Welcome from '../../Components/Welcome/Welcome'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import OrderCart from '../OrderCart/OrderCart'
-import history from '../history'
-import Aux from '../hoc/Auxiliary'
+import OrderCart from '../../OrderCart/OrderCart'
+import history from '../../history'
+import Aux from '../../hoc/Auxiliary'
 import './UserProfile.css'
-import AuthContext from '../Context'
+import AuthContext from '../../Context'
 
 class UserProfile extends React.Component {
     state = {
@@ -55,13 +55,13 @@ class UserProfile extends React.Component {
 
     showNew = (e) => {
         const all = this.state.orders
-        const renderedOrders = all ? all.filter(order => moment(order.mainTrip.startDate).isSameOrAfter(moment())) || null : null
+        const renderedOrders = all ? all.filter(order => moment(order.startDate).isSameOrAfter(moment())) || null : null
         this.setState({ renderedOrders, text: e.target.innerText })
     }
 
     showOld = (e) => {
         const all = this.state.orders
-        const renderedOrders = all ? all.filter(order => moment(order.mainTrip.startDate).isBefore(moment())) || null : null
+        const renderedOrders = all ? all.filter(order => moment(order.startDate).isBefore(moment())) || null : null
         this.setState({ renderedOrders, text: e.target.innerText })
     }
 
@@ -96,12 +96,12 @@ class UserProfile extends React.Component {
                         <div className="Border col span-3-of-4 box">
                             <h2 className="mainHeading">{this.state.text}</h2>
                             {orders !== null && orders.length > 0 ? orders.map(order => <OrderCart
-                                mainTrip={order.mainTrip.destination}
+                                mainTrip={order.destination}
                                 totalPrice={order.totalPrice}
-                                imageUrl={order.mainTrip.imageUrl}
-                                mainTripPrice={order.mainTrip.price.toFixed(2)}
-                                startDate={moment(order.mainTrip.startDate).format('DD/MM/YYYY')}
-                                duration={order.mainTrip.duration}
+                                imageUrl={order.imageUrl}
+                                mainTripPrice={Number(order.mainTripPrice).toFixed(2)}
+                                startDate={moment(order.startDate).format('DD/MM/YYYY')}
+                                duration={order.duration}
                                 additionalTrips={order.additionalTrips}
                                 key={order._id} />) : <p>No orders yet.</p>}
                         </div>}

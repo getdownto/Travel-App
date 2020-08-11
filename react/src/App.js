@@ -1,25 +1,7 @@
 import React from 'react';
-import ScrollToTop from './ScrollToTop'
-import Layout from './Layout/Layout'
-import Header from './Header/Header'
-import Welcome from './Welcome/Welcome'
-import Items from './Items/Items'
-import Login from './Login/Login'
-import Register from './Register/Register'
-import UserProfile from './UserProfile/UserProfile'
-import CreateTrip from './CreateTrip/CreateTrip'
-import Calendar from './Calendar/Calendar'
-import LastMinute from './Items/LastMinute'
-import SearchResults from './Items/SearchResults'
-import Destinations from './Destinations/Destinations'
-import EditTrip from './EditTrip/EditTrip'
-import Details from './Details/Details'
-import Error from './Error/Error'
-import { Router, Route, Switch } from 'react-router-dom'
 import AuthContext from './Context'
 import './App.css';
 import './Grid.css'
-import history from './history';
 import userService from './services/user-service';
 
 class App extends React.Component {
@@ -71,56 +53,7 @@ class App extends React.Component {
 
     return (
       <AuthContext.Provider value={{ isLogged: this.state.isLogged, isAdmin: this.state.isAdmin, id: this.state.id, user: this.state.user, logIn: this.logIn, logOut: this.logOut }}>
-        <Router history={history}>
-          <div className="App">
-            <ScrollToTop>
-              <Layout isLogged={this.state.isLogged} isAdmin={this.state.isAdmin} >
-                <Switch>
-                  <Route path="/" exact>
-                    <header>
-                      <Header />
-                    </header>
-                    <Welcome welcome="CHOOSE YOUR DESTINATION" />
-                    <Items />
-                  </Route>
-                  <Route path="/about">
-                    <Welcome welcome="About" />
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                  </Route>
-                  <Route path='/login' history={this.props.history}>
-                    {!this.state.isLogged ? <Login /> : <div>You have logged already!</div>}
-                  </Route>
-                  <Route path='/register' history={this.props.history}>
-                    <Welcome welcome="Register" />
-                    <Register />
-                  </Route>
-                  <Route path='/create' history={this.props.history} >
-                    {this.state.isLogged ? <CreateTrip /> : <Login />}
-                  </Route>
-                  <Route path='/calendar' exact component={Calendar} />
-                  <Route path='/lastminute' exact component={LastMinute} />
-                  <Route path='/search' exact component={SearchResults} />
-                  <Route path='/destinations' exact component={Destinations} />
-                  <Route path='/profile' exact component={this.state.isLogged ? UserProfile : Login} />
-                  <Route path='/details/:id' component={this.state.isLogged ? Details : Login} isAdmin={this.state.isAdmin} />
-                  <Route path='/edit/:id' component={this.state.isAdmin ? EditTrip : null} />
-                  <Route component={Error} />
-                </Switch>
-              </Layout>
-            </ScrollToTop>
-          </div>
-        </Router>
+        {this.props.children}
       </AuthContext.Provider>
 
     )

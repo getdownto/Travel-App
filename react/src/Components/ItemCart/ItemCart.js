@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './ItemCart.module.css'
-import '../Grid.css'
+import '../../Grid.css'
 
 const ItemCart = (props) => {
     return (

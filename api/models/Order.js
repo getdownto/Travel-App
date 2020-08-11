@@ -1,13 +1,38 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Model = mongoose.model;
-const { String, Number, Boolean, ObjectId } = Schema.Types;
+const { String, Number, Date, ObjectId } = Schema.Types;
 
 const orderSchema = new Schema({
 
     mainTrip: {
         type: ObjectId,
         ref: "Travel"
+    },
+
+    destination: {
+        type: String,
+        required: true
+    },
+
+    imageUrl: {
+        type: String,
+        required: true
+    },
+
+    mainTripPrice: {
+        type: Number,
+        required: true
+    },
+
+    startDate: {
+        type: Date,
+        required: true
+    },
+
+    duration: {
+        type: Number,
+        required: true
     },
 
     totalPrice: {

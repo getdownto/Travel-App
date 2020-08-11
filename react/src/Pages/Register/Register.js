@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SubmitButton from '../SubmitButton/SubmitButton'
-import userService from '../services/user-service'
+import SubmitButton from '../../Components/SubmitButton/SubmitButton'
+import userService from '../../services/user-service'
 import './Register.css'
-import history from '../history'
+import history from '../../history'
 
 import * as yup from 'yup'
 

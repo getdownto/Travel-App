@@ -1,15 +1,15 @@
 import React from 'react'
-import travelService from '../services/travel-service'
-import Welcome from '../Welcome/Welcome'
-import Aux from '../hoc/Auxiliary'
-import AdditionalTrip from '../AdditionalTrip/AdditionalTrip'
-import SubmitButton from '../SubmitButton/SubmitButton'
-import Modal from '../Modal/Modal'
-import Loading from '../Loading/Loading'
-import OrderSummary from '../OrderSummary/OrderSummary'
-import AuthContext from '../Context'
-import orderService from '../services/order-service'
-import history from '../history'
+import travelService from '../../services/travel-service'
+import Welcome from '../../Components/Welcome/Welcome'
+import Aux from '../../hoc/Auxiliary'
+import AdditionalTrip from '../../Components/AdditionalTrip/AdditionalTrip'
+import SubmitButton from '../../Components/SubmitButton/SubmitButton'
+import Modal from '../../Components/Modal/Modal'
+import Loading from '../../Components/Loading/Loading'
+import OrderSummary from '../../Components/OrderSummary/OrderSummary'
+import AuthContext from '../../Context'
+import orderService from '../../services/order-service'
+import history from '../../history'
 import styles from './Details.module.css'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
@@ -20,11 +20,13 @@ class Details extends React.Component {
     state = {
         loadedTrip: null,
         totalPrice: 0,
+        mainTripPrice: 0,
         additionalTrips: null,
         visible: {},
         purchased: false,
         discount: false,
-        expired: false
+        expired: false,
+        deleted: false
     }
 
     static contextType = AuthContext
@@ -35,13 +37,14 @@ class Details extends React.Component {
         console.log(this.props.match.params.id)
         const id = this.props.match.params.id
         travelService.details(id).then(loadedTrip => {
+            console.log('cdu loadedTrip', loadedTrip);
             if (moment(loadedTrip.startDate).isBetween(moment(), endDate)) {
                 discount = true
             }
             if(moment(loadedTrip.startDate).isBefore(moment())) {
                 expired = true
             }
-            this.setState({ loadedTrip, totalPrice: discount ? 0.85 * loadedTrip.price : loadedTrip.price, discount, expired })
+            this.setState({ loadedTrip, totalPrice: discount ? 0.85 * loadedTrip.price : loadedTrip.price, mainTripPrice: discount ? 0.85 * loadedTrip.price : loadedTrip.price, discount, expired })
         })
     }
 
@@ -57,7 +60,6 @@ class Details extends React.Component {
             current[loadedTrip.additionalTrips[e.target.id].trip] = loadedTrip.additionalTrips[e.target.id].price
             const additionalTrips = [...this.state.additionalTrips || [], current]
             this.setState({ totalPrice, visible, additionalTrips })
-            // console.log('state after add', this.state.additionalTrips);
             e.target.innerText = 'Remove'
         } else {
             const oldPrice = this.state.totalPrice
@@ -65,16 +67,23 @@ class Details extends React.Component {
             let totalPrice = oldPrice - loadedTrip.additionalTrips[e.target.id].price
             visible[e.target.id] = false
             current[loadedTrip.additionalTrips[e.target.id].trip] = loadedTrip.additionalTrips[e.target.id].price
-            console.log('state', this.state.additionalTrips);
-            console.log('additional trips before', trips);
             const index = this.state.additionalTrips.map(a => Object.keys(a)[0]).indexOf(loadedTrip.additionalTrips[e.target.id].trip)
             trips.splice(index, 1)
-            console.log('current', current);
-            console.log('index', index);
-            console.log('additional trips', trips);
             this.setState({ totalPrice, visible, additionalTrips: trips })
             e.target.innerText = 'Add'
         }
+    }
+
+    confirmDelete = () => {
+        this.setState({ deleted: !this.state.deleted })
+    }
+
+    deleteHandler = (e) => {
+        const id = this.props.match.params.id
+        travelService.delete(id).then(deleted => {
+            console.log('deleted', deleted);
+            history.push('/')
+        })
     }
 
     submitHandler = (e) => {
@@ -83,14 +92,24 @@ class Details extends React.Component {
     }
 
     confirmOrder = () => {
-        orderService.create(this.state.loadedTrip._id, this.state.totalPrice, this.state.additionalTrips, this.context.id)
-            .then(history.push('/'))
+        const trip = this.state.loadedTrip
+        console.log(('body to send', trip));
+        orderService.create(trip._id, trip.destination, trip.imageUrl, trip.startDate, trip.duration, this.state.mainTripPrice, this.state.totalPrice, this.state.additionalTrips)
+            .then(order => {
+                console.log(order);
+                history.push('/')
+            })
     }
 
     render() {
         let trips = null
         const id = this.props.match.params.id
-        const button = this.context.isAdmin === true ? <SubmitButton><Link to={`/edit/${id}`}>EDIT</Link></SubmitButton> : <SubmitButton submit={this.submitHandler}>SUBMIT</SubmitButton>
+        const button = this.context.isAdmin === true ? 
+        <Aux>
+            <SubmitButton><Link to={`/edit/${id}`}>EDIT TRIP</Link></SubmitButton>
+            <SubmitButton submit={this.confirmDelete}>DELETE TRIP</SubmitButton>
+        </Aux> : 
+        <SubmitButton submit={this.submitHandler}>ORDER TRIP</SubmitButton>
         const notAvailable = <div className={styles.NotAvailable}>This trip is no longer available for purchase.</div>
         console.log('details props', this.props);
         const content = this.state.loadedTrip ?
@@ -103,6 +122,14 @@ class Details extends React.Component {
                             additionalTrips={this.state.additionalTrips}
                             totalPrice={this.state.totalPrice}
                             submit={this.confirmOrder} />
+                    </Modal> : null}
+                    {this.state.deleted ?
+                    <Modal show={this.confirmDelete}>
+                        <div>
+                            <h3>DELETING TRIP</h3>
+                        <p>Are you sure you want to delete this trip?</p>
+                        <SubmitButton submit={this.deleteHandler}>DELETE</SubmitButton>
+                        </div>
                     </Modal> : null}
                 <div className={styles.Details}>
                     <h2 className={styles.Title}>{this.state.loadedTrip.destination}</h2>

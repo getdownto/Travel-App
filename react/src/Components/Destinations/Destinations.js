@@ -1,8 +1,8 @@
 import React from 'react'
-import Aux from '../hoc/Auxiliary'
+import Aux from '../../hoc/Auxiliary'
 import Welcome from '../Welcome/Welcome'
-import FilteredDest from '../Items/FilteredDest'
-import travelService from '../services/travel-service'
+import FilteredDest from '../../Items/FilteredDest'
+import travelService from '../../services/travel-service'
 import styles from './Destinations.module.css'
 
 class Destinations extends React.Component {

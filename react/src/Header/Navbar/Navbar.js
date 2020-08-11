@@ -2,7 +2,7 @@ import React from 'react'
 import userService from '../../services/user-service'
 import history from '../../history'
 import AuthContext from '../../Context'
-import styles from './Navigation.module.css'
+import styles from './Navbar.module.css'
 import {Link} from 'react-router-dom'
 
 class Navigation extends React.Component {

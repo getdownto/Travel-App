@@ -1,12 +1,12 @@
 import React from 'react'
 import DatePicker from "react-datepicker";
-import DynamicInput from '../CreateTrip/DynamicInput/DynamicInput'
-import Welcome from '../Welcome/Welcome'
-import history from '../history'
+import DynamicInput from '../../CreateTrip/DynamicInput/DynamicInput'
+import Welcome from '../../Components/Welcome/Welcome'
+import history from '../../history'
 import * as yup from 'yup'
 import "react-datepicker/dist/react-datepicker.css"
 import './EditTrip.css'
-import travelService from '../services/travel-service'
+import travelService from '../../services/travel-service'
 
 const schema = yup.object({
     destination: yup.string('Destination must be a string')
@@ -95,7 +95,7 @@ class CreateTrip extends React.Component {
         .then(() => {
             this.setState({ errors: null })
             travelService.update(id, this.state.destination, this.state.price, this.state.imageUrl, this.state.startDate, this.state.duration, this.state.description, this.state.additionalTrips).then(() => {
-                history.push(`/${id}`)
+                history.push(`/details/${id}`)
             })
         })
         .catch(err => {

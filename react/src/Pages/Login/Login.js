@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import * as yup from 'yup'
-import userService from '../services/user-service'
-import SubmitButton from '../SubmitButton/SubmitButton'
+import userService from '../../services/user-service'
+import SubmitButton from '../../Components/SubmitButton/SubmitButton'
 import './Login.css'
-import Welcome from '../Welcome/Welcome'
-import Aux from '../hoc/Auxiliary'
-import history from '../history'
-import AuthContext from '../Context'
+import Welcome from '../../Components/Welcome/Welcome'
+import Aux from '../../hoc/Auxiliary'
+import history from '../../history'
+import AuthContext from '../../Context'
 
 const schema = yup.object({
     username: yup.string('Username must be a string')

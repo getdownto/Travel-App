@@ -5,7 +5,7 @@ const orderService = {
     details: function(id) {
         return fetch(`http://localhost:9999/api/order/${id}`).then(res => res.json())
     },
-    create: function(mainTrip, totalPrice, additionalTrips) {
+    create: function(mainTrip, destination, imageUrl, startDate, duration, mainTripPrice, totalPrice, additionalTrips) {
         return fetch('http://localhost:9999/api/order', {
             method: 'POST',
             headers: {
@@ -15,6 +15,11 @@ const orderService = {
             },
             body: JSON.stringify({
                 mainTrip,
+                destination,
+                imageUrl,
+                startDate,
+                duration,
+                mainTripPrice,
                 totalPrice,
                 additionalTrips
             }),

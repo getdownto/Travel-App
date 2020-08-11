@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import DynamicInput from './DynamicInput/DynamicInput'
 import "react-datepicker/dist/react-datepicker.css"
 import './CreateTrip.css'
-import Welcome from '../Welcome/Welcome'
+import Welcome from '../Components/Welcome/Welcome'
 import history from '../history'
 import travelService from '../services/travel-service'
 import * as yup from 'yup'

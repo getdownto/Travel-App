@@ -44,6 +44,17 @@ const travelService = {
             }),
             credentials: 'include'
         }).then(res => res.text())
+    },
+    delete: function(id) {
+        return fetch(`http://localhost:9999/api/travel/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+
+            },
+            credentials: 'include'
+        }).then(res => res.text())
     }
 
 }

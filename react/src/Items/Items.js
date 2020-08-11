@@ -1,5 +1,5 @@
 import React from 'react'
-import ItemCart from '../ItemCart/ItemCart'
+import ItemCart from '../Components/ItemCart/ItemCart'
 import './Items.css'
 import moment from 'moment'
 import travelService from '../services/travel-service'

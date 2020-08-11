@@ -1,5 +1,5 @@
 import React from 'react'
-import SubmitButton from '../SubmitButton/SubmitButton'
+import SubmitButton from '../../Components/SubmitButton/SubmitButton'
 import styles from './OrderSummary.module.css'
 
 const OrderSummary = (props) => {

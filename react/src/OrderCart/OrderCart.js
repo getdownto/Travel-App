@@ -20,21 +20,22 @@ const OrderCart = (props) => {
                 <div className={styles.Beside}>
                     <p className={styles.OrderHeading}>{props.mainTrip}</p>
                     <div className={styles.MainTripDetails}>
-                    <p className={styles.Date}>{props.startDate}</p>
+                        <p className={styles.Date}>{props.startDate}</p>
                         <div className={styles.Duration}>
                             <img className={styles.Icon} src="/calendar.svg" alt="img" />
                             <p>{props.duration} days</p>
                         </div>
+                        <p>${props.mainTripPrice}</p>
                     </div>
                     {additionaTripsRendered ?
                         <div className={styles.AdditionalTr}>
                             <h3 className={styles.AddHeading}>Additional Trips Added</h3>
                             {additionaTripsRendered}
                         </div> : <h3 className={styles.AddHeading}>No Additional Trips Added</h3>}
-                        <div className={styles.TotalPriceContainer}>
-                            <p>TOTAL:</p>
-                            <p className={styles.TotalPrice}>${props.totalPrice.toFixed(2)}</p>
-                        </div>
+                    <div className={styles.TotalPriceContainer}>
+                        <p>TOTAL:</p>
+                        <p className={styles.TotalPrice}>${props.totalPrice.toFixed(2)}</p>
+                    </div>
                 </div>
             </div>
         </div>

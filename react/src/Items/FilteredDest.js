@@ -1,5 +1,5 @@
 import React from 'react'
-import ItemCart from '../ItemCart/ItemCart'
+import ItemCart from '../Components/ItemCart/ItemCart'
 import Aux from '../hoc/Auxiliary'
 import '../Items/Items.css'
 import moment from 'moment'

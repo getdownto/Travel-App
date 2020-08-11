@@ -1,7 +1,7 @@
 import React from 'react'
-import Aux from '../hoc/Auxiliary'
-import Navigation from '../Header/Navigation/Navigation'
-import Footer from '../Footer/Footer'
+import Aux from '../../hoc/Auxiliary'
+import Navigation from '../../Header/Navbar/Navbar'
+import Footer from '../../Components/Footer/Footer'
 
 
 class Layout extends React.Component {
