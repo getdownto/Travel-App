@@ -3,6 +3,7 @@ import AuthContext from './Context'
 import './App.css';
 import './Grid.css'
 import userService from './services/user-service';
+import Loading from './Components/Loading/Loading';
 
 class App extends React.Component {
 
@@ -10,7 +11,8 @@ class App extends React.Component {
     isLogged: false,
     isAdmin: false,
     user: null,
-    id: null
+    id: null,
+    loading: false
   }
 
   parseCookiesHandler = () => {
@@ -40,11 +42,13 @@ class App extends React.Component {
         this.logOut()
         return
       }
-      userService.verify(token).then(data => {
-        if (data.user !== undefined) {
-          const user = data.user
-          this.setState({ isLogged: true, id: user._id, isAdmin: user.isAdmin, user })
-        }
+      this.setState({loading: true}, () => {
+        userService.verify(token).then(data => {
+          if (data.user !== undefined) {
+            const user = data.user
+            this.setState({ isLogged: true, id: user._id, isAdmin: user.isAdmin, user, loading: false })
+          }
+        })
       })
     }
   }
@@ -53,7 +57,7 @@ class App extends React.Component {
 
     return (
       <AuthContext.Provider value={{ isLogged: this.state.isLogged, isAdmin: this.state.isAdmin, id: this.state.id, user: this.state.user, logIn: this.logIn, logOut: this.logOut }}>
-        {this.props.children}
+        {this.state.loading ? <Loading/> : this.props.children}
       </AuthContext.Provider>
 
     )

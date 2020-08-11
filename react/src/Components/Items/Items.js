@@ -1,18 +1,22 @@
 import React from 'react'
 import ItemCart from '../ItemCart/ItemCart'
+import Loading from '../Loading/Loading'
 import './Items.css'
 import moment from 'moment'
 import travelService from '../../services/travel-service'
 
 class Items extends React.Component {
     state = {
-        trips: null
+        trips: null,
+        loading: false
     }
 
     componentDidMount() {
-        travelService.load().then(trips => {
-            trips = trips.filter(trip => moment(trip.startDate).isSameOrAfter(moment()))
-            this.setState({ trips })
+        this.setState({loading: true}, () => {
+            travelService.load().then(trips => {
+                trips = trips.filter(trip => moment(trip.startDate).isSameOrAfter(moment()))
+                this.setState({ trips, loading: false })
+            })
         })
     }
 
@@ -40,7 +44,7 @@ class Items extends React.Component {
         return (
             <div className="Background">
                 <div className="CartContainer">
-                    {renderedTrips}
+                    {this.state.loading ? <Loading /> :renderedTrips}
                 </div>
             </div>
         )
