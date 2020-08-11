@@ -1,6 +1,6 @@
 import React from 'react'
 import DatePicker from "react-datepicker";
-import DynamicInput from '../../CreateTrip/DynamicInput/DynamicInput'
+import DynamicInput from '../../Components/DynamicInput/DynamicInput'
 import Welcome from '../../Components/Welcome/Welcome'
 import history from '../../history'
 import * as yup from 'yup'

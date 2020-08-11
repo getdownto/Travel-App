@@ -1,7 +1,7 @@
 import React from 'react'
 import Aux from '../../hoc/Auxiliary'
-import Welcome from '../Welcome/Welcome'
-import FilteredDest from '../../Items/FilteredDest'
+import Welcome from '../../Components/Welcome/Welcome'
+import FilteredDest from '../../Components/Items/FilteredDest'
 import travelService from '../../services/travel-service'
 import styles from './Destinations.module.css'
 

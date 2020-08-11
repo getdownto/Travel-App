@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import Aux from '../../hoc/Auxiliary'
 import Welcome from '../../Components/Welcome/Welcome'
-import Filtered from '../../Items/Filtered'
+import Filtered from '../../Components/Items/Filtered'
 import styles from './Calendar.module.css'
 
 const date = moment(new Date(), 'YYYY/MMM/DD')

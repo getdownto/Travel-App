@@ -1,11 +1,11 @@
 import React from 'react'
 import DatePicker from "react-datepicker";
-import DynamicInput from './DynamicInput/DynamicInput'
+import DynamicInput from '../../Components/DynamicInput/DynamicInput'
 import "react-datepicker/dist/react-datepicker.css"
 import './CreateTrip.css'
-import Welcome from '../Components/Welcome/Welcome'
-import history from '../history'
-import travelService from '../services/travel-service'
+import Welcome from '../../Components/Welcome/Welcome'
+import history from '../../history'
+import travelService from '../../services/travel-service'
 import * as yup from 'yup'
 
 const schema = yup.object({

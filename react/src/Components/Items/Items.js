@@ -1,8 +1,8 @@
 import React from 'react'
-import ItemCart from '../Components/ItemCart/ItemCart'
+import ItemCart from '../ItemCart/ItemCart'
 import './Items.css'
 import moment from 'moment'
-import travelService from '../services/travel-service'
+import travelService from '../../services/travel-service'
 
 class Items extends React.Component {
     state = {

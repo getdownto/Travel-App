@@ -1,10 +1,10 @@
 import React from 'react'
-import ItemCart from '../Components/ItemCart/ItemCart'
-import Aux from '../hoc/Auxiliary'
-import Welcome from '../Components/Welcome/Welcome'
+import ItemCart from '../ItemCart/ItemCart'
+import Aux from '../../hoc/Auxiliary'
+import Welcome from '../Welcome/Welcome'
 import '../Items/Items.css'
 import moment from 'moment'
-import travelService from '../services/travel-service'
+import travelService from '../../services/travel-service'
 
 const endDate = moment().add(7, 'days')
 

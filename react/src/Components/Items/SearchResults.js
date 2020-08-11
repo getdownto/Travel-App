@@ -1,8 +1,8 @@
 import React from 'react'
-import ItemCart from '../Components/ItemCart/ItemCart'
-import SearchBar from '../Header/SearchBar/SearchBar'
-import Aux from '../hoc/Auxiliary'
-import Welcome from '../Components/Welcome/Welcome'
+import ItemCart from '../ItemCart/ItemCart'
+import SearchBar from '../SearchBar/SearchBar'
+import Aux from '../../hoc/Auxiliary'
+import Welcome from '../Welcome/Welcome'
 import '../Items/Items.css'
 import moment from 'moment'
 
