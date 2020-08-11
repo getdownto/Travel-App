@@ -13,11 +13,11 @@ class Items extends React.Component {
         loading: false,
         currentPage: 1,
         postsPerPage: 3,
-        
+
     }
 
     componentDidMount() {
-        this.setState({loading: true}, () => {
+        this.setState({ loading: true }, () => {
             travelService.load().then(trips => {
                 trips = trips.filter(trip => moment(trip.startDate).isSameOrAfter(moment()))
                 this.setState({ trips, loading: false })
@@ -26,7 +26,21 @@ class Items extends React.Component {
     }
 
     paginate = (page) => {
-        this.setState({currentPage: page})
+        this.setState({ currentPage: page })
+    }
+
+    prevPage = () => {
+        const page = this.state.currentPage
+        if(page > 1) {
+            this.setState({ currentPage: page - 1 })
+        }
+    }
+
+    nextPage = () => {
+        const page = this.state.currentPage
+        if(page < Math.ceil(this.state.trips.length / this.state.postsPerPage)) {
+            this.setState({ currentPage: page + 1 })
+        }
     }
 
     render() {
@@ -36,18 +50,18 @@ class Items extends React.Component {
         const indexOfFirstTrip = indexOfLastTrip - this.state.postsPerPage
         const currentTrips = trips ? trips.slice(indexOfFirstTrip, indexOfLastTrip) : null
         const renderedTrips = currentTrips ?
-        currentTrips.map(trip => {
+            currentTrips.map(trip => {
                 let discount = false
-                if(moment(trip.startDate).isBetween(moment(), endDate)) {
+                if (moment(trip.startDate).isBetween(moment(), endDate)) {
                     discount = true
                     //console.log(trip.destination, ' ', trip.startDate)
                 }
-                 return <ItemCart
+                return <ItemCart
                     destination={trip.destination}
                     imageUrl={trip.imageUrl}
                     startDate={moment(trip.startDate).format('DD/MM/YYYY')}
                     duration={trip.duration}
-                    price={trip.price} 
+                    price={trip.price}
                     key={trip._id}
                     id={trip._id}
                     discount={discount} />
@@ -55,12 +69,18 @@ class Items extends React.Component {
             : <div>No trips found.</div>
         return (
             <Aux>
-            <div className="Background">
-                <div className="CartContainer">
-                    {this.state.loading ? <Loading /> :renderedTrips}
+                <div className="Background">
+                    <div className="CartContainer">
+                        {this.state.loading ? <Loading /> : renderedTrips}
+                    </div>
                 </div>
-            </div>
-            <Pagination totalPosts={this.state.trips.length} postsPerPage={this.state.postsPerPage} paginate={this.paginate} currentPage={this.state.currentPage} />
+                <Pagination
+                    totalPosts={this.state.trips.length}
+                    postsPerPage={this.state.postsPerPage}
+                    paginate={this.paginate}
+                    currentPage={this.state.currentPage}
+                    prevPage={this.prevPage}
+                    nextPage={this.nextPage} />
             </Aux>
         )
     }

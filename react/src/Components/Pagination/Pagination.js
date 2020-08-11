@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Pagination.module.css'
+import { number } from 'yup'
 
 const Pagination = (props) => {
     const pageNumbers = []
@@ -11,6 +12,7 @@ const Pagination = (props) => {
 
     return (
         <div className={styles.PaginationContainer}>
+            <div className={[styles.Prev, styles.Arrow].join(' ')} onClick={props.prevPage}></div>
             <ul className={styles.Pagination}>
                 {pageNumbers.map(number => {
                     {props.currentPage === number ? classString = [styles.Page, styles.Active] : classString = [styles.Page]}
@@ -19,6 +21,7 @@ const Pagination = (props) => {
                     </li>
                 })}
             </ul>
+            <div className={[styles.Next, styles.Arrow].join(' ')} onClick={props.nextPage}></div>
         </div>
     )
 }
