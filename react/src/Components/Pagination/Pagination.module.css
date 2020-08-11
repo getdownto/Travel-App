@@ -1,0 +1,37 @@
+.PaginationContainer {
+    display: flex;
+    justify-content: center;
+    margin: 5vh auto;
+}
+
+.Pagination {
+    display: flex;
+    list-style: none;
+}
+
+.Page {
+    display: inline-block;
+    margin: 2px;
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid transparent;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+.Number {
+    width: 91%;
+    margin: auto;
+    color: #888888;
+}
+
+.Page:hover {
+    background-color: rgb(236, 236, 236);
+}
+
+.Active {
+    background-color: rgb(226, 226, 226);
+    color: white;
+}

@@ -1,14 +1,19 @@
 import React from 'react'
 import ItemCart from '../ItemCart/ItemCart'
 import Loading from '../Loading/Loading'
+import Pagination from '../Pagination/Pagination'
+import Aux from '../../hoc/Auxiliary'
 import './Items.css'
 import moment from 'moment'
 import travelService from '../../services/travel-service'
 
 class Items extends React.Component {
     state = {
-        trips: null,
-        loading: false
+        trips: [],
+        loading: false,
+        currentPage: 1,
+        postsPerPage: 3,
+        
     }
 
     componentDidMount() {
@@ -20,11 +25,18 @@ class Items extends React.Component {
         })
     }
 
+    paginate = (page) => {
+        this.setState({currentPage: page})
+    }
+
     render() {
         const endDate = moment().add(7, 'days')
         const trips = this.state.trips
-        const renderedTrips = trips ?
-            trips.map(trip => {
+        const indexOfLastTrip = this.state.currentPage * this.state.postsPerPage
+        const indexOfFirstTrip = indexOfLastTrip - this.state.postsPerPage
+        const currentTrips = trips ? trips.slice(indexOfFirstTrip, indexOfLastTrip) : null
+        const renderedTrips = currentTrips ?
+        currentTrips.map(trip => {
                 let discount = false
                 if(moment(trip.startDate).isBetween(moment(), endDate)) {
                     discount = true
@@ -42,11 +54,14 @@ class Items extends React.Component {
             })
             : <div>No trips found.</div>
         return (
+            <Aux>
             <div className="Background">
                 <div className="CartContainer">
                     {this.state.loading ? <Loading /> :renderedTrips}
                 </div>
             </div>
+            <Pagination totalPosts={this.state.trips.length} postsPerPage={this.state.postsPerPage} paginate={this.paginate} currentPage={this.state.currentPage} />
+            </Aux>
         )
     }
 }

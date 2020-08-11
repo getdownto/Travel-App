@@ -48,9 +48,10 @@ class App extends React.Component {
             const user = data.user
             this.setState({ isLogged: true, id: user._id, isAdmin: user.isAdmin, user, loading: false })
           }
-        })
+        }).catch(() => this.setState({loading: false}))
       })
     }
+    
   }
 
   render() {
