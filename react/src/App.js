@@ -2,10 +2,8 @@ import React from 'react';
 import ScrollToTop from './ScrollToTop'
 import Layout from './Layout/Layout'
 import Header from './Header/Header'
-import Navigation from './Header/Navigation/Navigation'
 import Welcome from './Welcome/Welcome'
 import Items from './Items/Items'
-import Footer from './Footer/Footer'
 import Login from './Login/Login'
 import Register from './Register/Register'
 import UserProfile from './UserProfile/UserProfile'
@@ -76,8 +74,7 @@ class App extends React.Component {
         <Router history={history}>
           <div className="App">
             <ScrollToTop>
-              <Layout>
-                <Navigation isLogged={this.state.isLogged} isAdmin={this.state.isAdmin} />
+              <Layout isLogged={this.state.isLogged} isAdmin={this.state.isAdmin} >
                 <Switch>
                   <Route path="/" exact>
                     <header>
@@ -122,7 +119,6 @@ class App extends React.Component {
                 </Switch>
               </Layout>
             </ScrollToTop>
-            <Footer />
           </div>
         </Router>
       </AuthContext.Provider>
