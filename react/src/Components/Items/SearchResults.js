@@ -10,7 +10,7 @@ class SearchResults extends React.Component {
     state = {}
 
     render() {
-        const trips = null
+        let trips = null
         if (this.props.location.state !== undefined) {
             trips = this.props.location.state.trips
         }

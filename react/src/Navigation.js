@@ -15,7 +15,7 @@ import Destinations from './Pages/Destinations/Destinations'
 import EditTrip from './Pages/EditTrip/EditTrip'
 import Details from './Pages/Details/Details'
 import Error from './Pages/Error/Error'
-import { Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import AuthContext from './Context'
 import './App.css';
 import './Grid.css'
@@ -56,11 +56,10 @@ class Navigation extends React.Component {
                     <h1>Testing Scroll</h1>
                   </Route>
                   <Route path='/login' history={this.props.history}>
-                    {!this.context.isLogged ? <Login /> : <div>You have logged already!</div>}
+                    {!this.context.isLogged ? <Login /> :  (<Redirect to="/" />)}
                   </Route>
                   <Route path='/register' history={this.props.history}>
-                    <Welcome welcome="Register" />
-                    <Register />
+                  {!this.context.isLogged ? <Register /> :  (<Redirect to="/" />)}
                   </Route>
                   <Route path='/create' history={this.props.history} >
                     {this.context.isLogged ? <CreateTrip /> : <Login />}

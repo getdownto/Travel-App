@@ -6,6 +6,7 @@ import moment from 'moment'
 import OrderCart from '../../Components/OrderCart/OrderCart'
 import history from '../../history'
 import Aux from '../../hoc/Auxiliary'
+import LazyLoad from 'react-lazyload'
 import './UserProfile.css'
 import AuthContext from '../../Context'
 import Loading from '../../Components/Loading/Loading'
@@ -101,11 +102,13 @@ class UserProfile extends React.Component {
         <div className="Border col span-3-of-4 box">
             <h2 className="mainHeading">{this.state.text}</h2>
             {users !== null ? users.map(user =>
+            <LazyLoad height={100} >
                 <div className="UserContainer">
                     <div className="GridItem">{user.username}</div>
                     <div className="GridItem">{user.trips.length} orders</div>
                     {!user.isAdmin ? <button className="GridItem GridBtn" id={user._id} onClick={this.makeAdmin}>Make Admin</button>: <p className="GridItem">ADMIN</p>}
-                </div>) : <p>No users found.</p>}
+                </div>
+            </LazyLoad>) : <p>No users found.</p>}
         </div>
         return (
             <Aux>

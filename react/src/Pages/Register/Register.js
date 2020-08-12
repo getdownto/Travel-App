@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SubmitButton from '../../Components/SubmitButton/SubmitButton'
 import userService from '../../services/user-service'
+import Aux from '../../hoc/Auxiliary'
+import Welcome from '../../Components/Welcome/Welcome'
 import './Register.css'
 import history from '../../history'
 
@@ -50,22 +52,11 @@ class Register extends React.Component {
             })
     }
 
-    // validateInputHandler = () => {
-    //     schema.validate(this.state, {abortEarly: false})
-    //     .catch(err => {
-    //         console.log(err.error.inner)
-    //         const errors = err.inner.reduce((acc, {path, message}) => {
-    //             acc[path] = (acc[path] || []).concat(message)
-    //             return acc
-    //         }, {})
-    //         this.setState({errors})
-    //     })
-    // }
-
     render() {
         return (
-            <div className="FormContainer">
-
+            <Aux>
+                <Welcome welcome="Register" />
+                <div className="FormContainer">
                 <form className="Register">
                     <div className="FieldContainer">
                         <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.changeFieldHandler} />
@@ -73,12 +64,12 @@ class Register extends React.Component {
                     </div>
                     {this.state.errors && this.state.errors['username'] ? <p className="ErrorMessage">{this.state.errors.username[0]}</p> : null}
                     <div className="FieldContainer">
-                        <input type="text" name="password" placeholder="Password" value={this.state.password} onChange={this.changeFieldHandler} />
+                        <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeFieldHandler} />
                         {this.state.errors && this.state.errors['password'] ? <img className="errorIcon" src="/close.svg" alt="err"></img> : null}
                     </div>
                     {this.state.errors && this.state.errors['password'] ? <p className="ErrorMessage">{this.state.errors.password[0]}</p> : null}
                     <div className="FieldContainer">
-                        <input type="text" name="repeatPassword" placeholder="Repeat Password" value={this.state.repeatPassword} onChange={this.changeFieldHandler} />
+                        <input type="password" name="repeatPassword" placeholder="Repeat Password" value={this.state.repeatPassword} onChange={this.changeFieldHandler} />
                         {this.state.errors && this.state.errors['repeatPassword'] ? <img className="errorIcon" src="/close.svg" alt="err"></img> : null}
                     </div>
                     {this.state.errors && this.state.errors['repeatPassword'] ? <p className="ErrorMessage">{this.state.errors.repeatPassword[0]}</p> : null}
@@ -86,6 +77,7 @@ class Register extends React.Component {
                     <p><Link to="/login">Already a member? Click here to log in.</Link></p>
                 </form>
             </div>
+            </Aux>
         )
     }
 

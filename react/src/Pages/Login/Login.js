@@ -72,7 +72,7 @@ class Login extends React.Component {
                         </div>
                         {this.state.errors && this.state.errors['username'] ? <p className="ErrorMessage">{this.state.errors.username[0]}</p> : null}
                         <div className="FieldContainer">
-                            <input type="text" name="password" placeholder="Password" value={this.state.password} onChange={this.changeFieldHandler} />
+                            <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeFieldHandler} />
                             {this.state.errors && this.state.errors['password'] ? <img className="errorIcon" src="/close.svg" alt="error"></img> : null}
                         </div>
                         {this.state.errors && this.state.errors['password'] ? <p className="ErrorMessage">{this.state.errors.password[0]}</p> : null}
