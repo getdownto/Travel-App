@@ -3,6 +3,7 @@ import ScrollToTop from './ScrollToTop'
 import Layout from './Pages/Layout/Layout'
 import Header from './Components/Header/Header'
 import About from './Pages/About/About'
+import Contacts from './Pages/Contacts/Contacts'
 import Welcome from './Components/Welcome/Welcome'
 import Items from './Components/Items/Items'
 import Login from './Pages/Login/Login'
@@ -42,6 +43,7 @@ class Navigation extends React.Component {
                     <Items />
                   </Route>
                   <Route path="/about" component={About} />
+                  <Route path="/contacts" component={Contacts} />
                   <Route path='/login' history={this.props.history}>
                     {!this.context.isLogged ? <Login /> :  (<Redirect to="/" />)}
                   </Route>
