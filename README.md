@@ -1,6 +1,6 @@
 # Travel-App
 
-*SoftUni ReactJS Course Project - August 2020
+*SoftUni ReactJS Course Project - August 2020*
 
 ## Project Description
 
