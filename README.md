@@ -13,19 +13,21 @@ After code is downloaded, all dependecies should be installed (`npm install`). A
 
 ## Routes and User Roles (Accessibility)
 
-| Page               | Route        | Guest            | User             | Admin            |
-| -----              |-------       | -------------    |------            |-------           |
-| Home               |/             |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-| Calendar Filter    |/calendar     |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-| Destinations Filter|/destinations |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-| Last Minute Filter |/lastminute   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-| Search Results     |/search       |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-| Register           |/register     |:heavy_check_mark:|       :x:        |         :x:      |
-| Login              |/login        |:heavy_check_mark:|       :x:        |         :x:      |
-| Trip Details       |/details/:id  |:x:               |:heavy_check_mark:|:heavy_check_mark:|
-| Create Trip        |/create       |:x:               |:x:               |:heavy_check_mark:|
-| Edit Trip          |/edit/:id     |:x:               |:x:               |:heavy_check_mark:|
-| User Profile       |/profile      |:x:               |:heavy_check_mark:|:x:               |
-| Admin Panel        |/profile      |:x:               |:x:               |:heavy_check_mark:|
+| Page               | Functionality                                             | Route        | Guest            | User             | Admin            |
+| -----              | --------------                                            |-------       | -------------    |------            |-------           |
+| Home               | View Home Page and all available trips                    |/             |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+| Calendar Filter    | View all available trips for a particular month           |/calendar     |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+| Destinations Filter| View all trips for a particular destination               |/destinations |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+| Last Minute Filter | View all trips starting in the next 7 days (reduced price)|/lastminute   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+| Search Results     | View all trips filtered by key word                       |/search       |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+| Register           | New user registration                                     |/register     |:heavy_check_mark:|       :x:        |         :x:      |
+| Login              | Sign in for existing user                                 |/login        |:heavy_check_mark:|       :x:        |         :x:      |
+| Trip Details       | View trip details                                         |/details/:id  |:x:               |:heavy_check_mark:|:heavy_check_mark:|
+| Trip Details       | Delete Trip (after confirmation)                          |/details/:id  |       :x:        |       :x:        |:heavy_check_mark:|
+| Trip Details       | Purchase Trip (after confirmation of details)             |/details/:id  |       :x:        |:heavy_check_mark:|       :x:        |
+| Create Trip        | Create new trip                                           |/create       |:x:               |:x:               |:heavy_check_mark:|
+| Edit Trip          | Edit existing trip                                        |/edit/:id     |:x:               |:x:               |:heavy_check_mark:|
+| User Profile       | View All Orders (created by that user)                    |/profile      |:x:               |:heavy_check_mark:|:x:               |
+| Admin Panel        | View All Users and make selected user admin               |/profile      |:x:               |:x:               |:heavy_check_mark:|
 
 
