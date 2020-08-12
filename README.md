@@ -20,6 +20,8 @@ After code is downloaded, all dependecies should be installed (`npm install`). A
 | Destinations Filter| View all trips for a particular destination               |/destinations |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 | Last Minute Filter | View all trips starting in the next 7 days (reduced price)|/lastminute   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 | Search Results     | View all trips filtered by key word                       |/search       |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+| About              | View About Page (static)                                  |/about        |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+| Contacts           | View Contacts Page (static)                               |/contacts     |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 | Register           | New user registration                                     |/register     |:heavy_check_mark:|       :x:        |         :x:      |
 | Login              | Sign in for existing user                                 |/login        |:heavy_check_mark:|       :x:        |         :x:      |
 | Trip Details       | View trip details                                         |/details/:id  |:x:               |:heavy_check_mark:|:heavy_check_mark:|
