@@ -2,6 +2,7 @@ import React from 'react';
 import ScrollToTop from './ScrollToTop'
 import Layout from './Pages/Layout/Layout'
 import Header from './Components/Header/Header'
+import About from './Pages/About/About'
 import Welcome from './Components/Welcome/Welcome'
 import Items from './Components/Items/Items'
 import Login from './Pages/Login/Login'
@@ -40,21 +41,7 @@ class Navigation extends React.Component {
                     <Welcome welcome="CHOOSE YOUR DESTINATION" />
                     <Items />
                   </Route>
-                  <Route path="/about">
-                    <Welcome welcome="About" />
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                    <h1>Testing Scroll</h1>
-                  </Route>
+                  <Route path="/about" component={About} />
                   <Route path='/login' history={this.props.history}>
                     {!this.context.isLogged ? <Login /> :  (<Redirect to="/" />)}
                   </Route>
