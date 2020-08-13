@@ -4,7 +4,7 @@
 
 ## Project Description
 
-This is a website of a travel agency which offers trips to different destinations. Admin users can add new trips and edit or delete existing ones, guest users can browse through the existing trips, while registered users can also view the trips details, choose their desired one, pick additional trips within the selected one (if available) and place their order.
+This is an application for a travel agency which offers trips to different destinations. Admin users can add new trips and edit or delete existing ones, guest users can browse through the existing trips, while registered users can also view the trips details, choose their desired one, pick additional trips within the selected one (if available) and place their order.
 ReactJS is used for the client-side, backend - NodeJS, Express JS and MongoDB.
 
 ## Installation and Prerequisites
