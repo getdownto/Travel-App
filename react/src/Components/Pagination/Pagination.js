@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './Pagination.module.css'
-import { number } from 'yup'
 
 const Pagination = (props) => {
     const pageNumbers = []

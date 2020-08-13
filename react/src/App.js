@@ -26,7 +26,6 @@ class App extends React.Component {
 
   logIn = (user) => {
     this.setState({ isLogged: true, isAdmin: JSON.parse(user).isAdmin, id: JSON.parse(user)._id, user: JSON.parse(user) })
-    console.log('state after login', this.state)
   }
 
   logOut = () => {
@@ -35,7 +34,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const cookies = this.parseCookiesHandler()
-    console.log('all cookies', cookies['x-auth-token'])
     if (cookies['x-auth-token'] !== null && cookies['x-auth-token'] !== undefined) {
       const token = cookies['x-auth-token']
       if(!token) {

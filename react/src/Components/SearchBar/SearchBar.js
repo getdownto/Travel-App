@@ -22,16 +22,10 @@ class SearchBar extends React.Component {
 
     submitSearch = () => {
         const search = this.state.search
-        // let trips = [...this.state.trips]
-        // trips = trips.filter(a => a.destination.toLowerCase().includes(this.state.search.toLowerCase()) || a.description.toLowerCase().includes(this.state.search.toLowerCase()))
-        // this.setState({ trips: [...trips] })
         travelService.load().then(trips => {
             trips = trips.filter(a => a.destination.toLowerCase().includes(this.state.search.toLowerCase()) || a.description.toLowerCase().includes(this.state.search.toLowerCase()))
             this.setState({ trips, search })
-            console.log(trips)
         })
-        // console.log(this.state.search)
-        // console.log('trips', this.state.trips)
     }
 
     render() {

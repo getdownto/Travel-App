@@ -71,7 +71,6 @@ class CreateTrip extends React.Component {
 
     submitForm = (e) => {
         e.preventDefault()
-        console.log(this.state)
 
         schema.validate(this.state, { abortEarly: false })
             .then(() => {
@@ -81,7 +80,6 @@ class CreateTrip extends React.Component {
                 })
             })
             .catch(err => {
-                console.log(err)
                 const errors = err.inner.reduce((acc, { path, message }) => {
                     acc[path] = (acc[path] || []).concat(message)
                     return acc

@@ -3,7 +3,6 @@ import SubmitButton from '../../Components/SubmitButton/SubmitButton'
 import styles from './OrderSummary.module.css'
 
 const OrderSummary = (props) => {
-    console.log(props.additionalTrips)
     return (
     <div className={styles.OrderSummary}>
             <h3>ORDER CONFIRMATION</h3>
@@ -18,9 +17,9 @@ const OrderSummary = (props) => {
             </div>
             {props.additionalTrips !== null && props.additionalTrips.length > 0 ?
                 <ul>
-                    {props.additionalTrips.map(trip => {
+                    {props.additionalTrips.map((trip, index) => {
                          for (const key in trip) {
-                            return <li className={`${styles.additionalTrips} ${styles.Columns}`}>
+                            return <li className={`${styles.additionalTrips} ${styles.Columns}`} key={index}>
                                 <p>+ {key}</p>
                                 <p>${Number(trip[key]).toFixed(2)}</p>
                             </li>

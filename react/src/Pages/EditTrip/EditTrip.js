@@ -40,7 +40,6 @@ class CreateTrip extends React.Component {
     componentDidMount() {
         const id = this.props.match.params.id
         travelService.details(id).then(loadedTrip => {
-            console.log(loadedTrip)
             const date = new Date(loadedTrip.startDate)
             this.setState({
                 destination: loadedTrip.destination,
@@ -51,7 +50,6 @@ class CreateTrip extends React.Component {
                 description: loadedTrip.description,
                 additionalTrips: [...loadedTrip.additionalTrips]
             })
-            console.log(this.state)
         })
     }
 
@@ -90,7 +88,6 @@ class CreateTrip extends React.Component {
     submitForm = (e) => {
         const id = this.props.match.params.id
         e.preventDefault()
-        console.log(this.state)
         schema.validate(this.state, { abortEarly: false })
         .then(() => {
             this.setState({ errors: null })
@@ -99,7 +96,6 @@ class CreateTrip extends React.Component {
             })
         })
         .catch(err => {
-            console.log(err)
             const errors = err.inner.reduce((acc, { path, message }) => {
                 acc[path] = (acc[path] || []).concat(message)
                 return acc
@@ -109,7 +105,6 @@ class CreateTrip extends React.Component {
     }
 
     render() {
-        console.log(this.state.additionalTrips)
         const inputFiellds = this.state.additionalTrips ? this.state.additionalTrips.map((a, i) => {
             return <DynamicInput
                 tripValue={a.trip}

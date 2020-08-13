@@ -37,7 +37,6 @@ class LastMinute extends React.Component {
 
 
     render() {
-        console.log(endDate)
         const trips = this.state.trips
         const renderedTrips = trips !== null && trips.length > 0 ?
             trips.map(trip =>

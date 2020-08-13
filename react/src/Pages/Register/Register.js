@@ -43,7 +43,6 @@ class Register extends React.Component {
                 })
             })
             .catch(err => {
-                console.log(err)
                 const errors = err.inner.reduce((acc, { path, message }) => {
                     acc[path] = (acc[path] || []).concat(message)
                     return acc

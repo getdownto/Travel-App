@@ -38,19 +38,16 @@ class Login extends React.Component {
             .then(() => {
                 this.setState({ errors: null })
                 userService.login(this.state.username, this.state.password).then((user) => {
-                    console.log('before if user', user);
                     if (user !== 'Invalid username or password') {
                         this.context.logIn(user)
                         history.push('/')
                         this.setState({ isLogged: true })
-                        console.log('logged in user', user);
                     } else {
                         this.setState({isLogged: false})
                     }
                 })
             })
             .catch(err => {
-                console.log(err)
                 const errors = err.inner.reduce((acc, { path, message }) => {
                     acc[path] = (acc[path] || []).concat(message)
                     return acc

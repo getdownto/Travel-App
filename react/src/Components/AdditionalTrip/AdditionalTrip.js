@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './AdditionalTrip.module.css'
 
 const AdditionalTrip = (props) => {
-    console.log(props);
     return (
         <div className={`${styles.ItemCart} ${styles.Aligned}`}>
             <div className={styles.CartContent}>

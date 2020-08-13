@@ -36,7 +36,6 @@ class UserProfile extends React.Component {
         const id = this.context.id
         this.setState({ loading: true }, () => {
             userService.load(id).then(user => {
-                console.log('user', user.username)
                 this.setState({ username: user.username, orders: user.trips, renderedOrders: user.trips, text: 'All Orders', loading: false })
             })
         })
@@ -74,7 +73,6 @@ class UserProfile extends React.Component {
 
     makeAdmin = (e) => {
         const id = e.target.id
-        console.log('is this my id', id);
         userService.makeAdmin(id).then(user => {
             this.setState({updated: true})
         })
@@ -102,7 +100,7 @@ class UserProfile extends React.Component {
         <div className="Border col span-3-of-4 box">
             <h2 className="mainHeading">{this.state.text}</h2>
             {users !== null ? users.map(user =>
-            <LazyLoad height={100} >
+            <LazyLoad height={100} key={user._id}>
                 <div className="UserContainer">
                     <div className="GridItem">{user.username}</div>
                     <div className="GridItem">{user.trips.length} orders</div>

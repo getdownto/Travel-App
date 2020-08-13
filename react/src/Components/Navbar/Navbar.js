@@ -17,7 +17,6 @@ class Navigation extends React.Component {
     }
 
     render () {
-        console.log('props', this.props)
         const userProfile = <Link to={`/profile`} className={styles.Profile}>
             <img src="/user.svg" alt="img" />
             <p>{this.context.isAdmin ? 'Admin Panel' : 'My Profile'}</p>

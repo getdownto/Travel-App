@@ -34,10 +34,8 @@ class Details extends React.Component {
     componentDidMount() {
         let discount = false
         let expired = false
-        console.log(this.props.match.params.id)
         const id = this.props.match.params.id
         travelService.details(id).then(loadedTrip => {
-            console.log('cdu loadedTrip', loadedTrip);
             if (moment(loadedTrip.startDate).isBetween(moment(), endDate)) {
                 discount = true
             }
@@ -81,22 +79,18 @@ class Details extends React.Component {
     deleteHandler = (e) => {
         const id = this.props.match.params.id
         travelService.delete(id).then(deleted => {
-            console.log('deleted', deleted);
             history.push('/')
         })
     }
 
     submitHandler = (e) => {
-        console.log('state after submit', this.state)
         this.setState({ purchased: !this.state.purchased })
     }
 
     confirmOrder = () => {
         const trip = this.state.loadedTrip
-        console.log(('body to send', trip));
         orderService.create(trip._id, trip.destination, trip.imageUrl, trip.startDate, trip.duration, this.state.mainTripPrice, this.state.totalPrice, this.state.additionalTrips)
             .then(order => {
-                console.log(order);
                 history.push('/')
             })
     }
@@ -111,7 +105,6 @@ class Details extends React.Component {
         </Aux> : 
         <SubmitButton submit={this.submitHandler}>ORDER TRIP</SubmitButton>
         const notAvailable = <div className={styles.NotAvailable}>This trip is no longer available for purchase.</div>
-        console.log('details props', this.props);
         const content = this.state.loadedTrip ?
             <Aux>
                 {this.state.purchased ?
@@ -171,7 +164,6 @@ class Details extends React.Component {
                 </div>
             </Aux>
             : <Loading />
-        console.log(this.state.loadedTrip)
         return (
             <Aux>
                 <Welcome welcome="Details" />

@@ -14,7 +14,6 @@ class Destinations extends React.Component {
     componentDidMount() {
         travelService.load().then(trips => {
             trips = trips.map(trip => trip.destination)
-            console.log(trips)
             this.setState({ destinations: Array.from(new Set(trips)) })
         })
     }
@@ -24,13 +23,7 @@ class Destinations extends React.Component {
     }
 
     render() {
-        console.log('d', this.state.selectedDestination)
         let classString = ''
-        // const monthTiles = currentMonthArr.map((curr, index) => {
-        //     this.state.selectedMonth === curr.toLowerCase() ? classString = 'SingleTile Selected' : classString = 'SingleTile'
-        //     return <div className={classString} id={index} key={curr} onClick={this.clickHandler} >{curr}</div>
-
-        // })
         const destinationsList = this.state.destinations ? this.state.destinations.map((destination, index) => {
             this.state.selectedDestination === destination.toLowerCase() ? classString = [styles.SingleTile, styles.Selected] : classString = [styles.SingleTile]
             return <li className={classString.join(' ')} key={index} id={index} onClick={this.clickHandler}>{destination}</li>
