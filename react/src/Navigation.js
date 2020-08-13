@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ScrollToTop from './ScrollToTop'
 import Layout from './Pages/Layout/Layout'
 import Header from './Components/Header/Header'
@@ -17,6 +17,7 @@ import Destinations from './Pages/Destinations/Destinations'
 import EditTrip from './Pages/EditTrip/EditTrip'
 import Details from './Pages/Details/Details'
 import Error from './Pages/Error/Error'
+import Loading from './Components/Loading/Loading'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import AuthContext from './Context'
 import './App.css';
@@ -34,6 +35,7 @@ class Navigation extends React.Component {
           <div className="App">
             <ScrollToTop>
               <Layout isLogged={this.context.isLogged} isAdmin={this.context.isAdmin} >
+                <Suspense fallback={<Loading/>}>
                 <Switch>
                   <Route path="/" exact>
                     <header>
@@ -62,6 +64,7 @@ class Navigation extends React.Component {
                   <Route path='/edit/:id' component={this.context.isAdmin ? EditTrip : null} />
                   <Route component={Error} />
                 </Switch>
+                </Suspense>
               </Layout>
             </ScrollToTop>
           </div>
