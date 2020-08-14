@@ -121,3 +121,19 @@ a {
     padding-top: 5px;
     margin-top: 10px;
 }
+
+.EditIcons {
+    display: flex;
+    margin-top: 2vh;
+}
+
+.EditIcons img {
+    height: 2.5vh;
+    margin-right: 1vh;
+    cursor: pointer;
+}
+
+.HeadingContainer{
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,4 +1,5 @@
 const models = require('../models');
+const mongoose = require('mongoose');
 
 module.exports = {
     get: {
@@ -10,7 +11,7 @@ module.exports = {
         single: (req, res, next) => {
             const id = req.params.id;
 
-            models.Order.findOne({_id: id}).populate('user')
+            models.Order.findOne({ _id: id }).populate('user')
                 .then((order) => res.send(order))
                 .catch(next);
         }
@@ -28,6 +29,27 @@ module.exports = {
                 ]);
             })
             .then((createdOrder) => res.send(createdOrder))
+            .catch(next)
+    },
+
+    put: (req, res, next) => {
+        const id = req.params.id;
+        const { additionalTrips } = req.body;
+        models.Order.update({ _id: id }, { additionalTrips: [...additionalTrips] })
+            .then((updatedTOrder) => res.send(updatedTOrder))
+            .catch(next)
+    },
+
+    delete: (req, res, next) => {
+        const id = req.params.id;
+        const { _id } = req.user;
+        models.Order.deleteOne({ _id: id })
+            .then(deleted => {
+                return Promise.all([
+                    models.User.updateOne({ _id }, { $pull: { trips: mongoose.Types.ObjectId(deleted._id) } }),
+                ]);
+            })
+            .then((removedOrder) => res.send(removedOrder))
             .catch(next)
     }
 };

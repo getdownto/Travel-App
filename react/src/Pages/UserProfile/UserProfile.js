@@ -49,6 +49,7 @@ class UserProfile extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        
         const isAdmin = this.context.isAdmin
         if (isAdmin && this.state.updated !== prevState.updated) {
             this.setState({ loading: true }, () => {
@@ -102,8 +103,8 @@ class UserProfile extends React.Component {
             {users !== null ? users.map(user =>
             <LazyLoad height={100} key={user._id}>
                 <div className="UserContainer">
-                    <div className="GridItem">{user.username}</div>
-                    <Link to={`/user/${user._id}`} className="GridItem">{user.trips.length} orders</Link>
+                    <Link to={`/user/${user._id}`} className="GridItem">{user.username}</Link>
+                    {/* <Link to={`/user/${user._id}`} className="GridItem">{user.trips.length} orders</Link> */}
                     {!user.isAdmin ? <button className="GridItem GridBtn" id={user._id} onClick={this.makeAdmin}>Make Admin</button>: <p className="GridItem">ADMIN</p>}
                 </div>
             </LazyLoad>) : <p>No users found.</p>}

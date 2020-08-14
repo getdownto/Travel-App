@@ -5,12 +5,18 @@ import Aux from '../../hoc/Auxiliary'
 import Loading from '../../Components/Loading/Loading'
 import moment from 'moment'
 import userService from '../../services/user-service'
+import Modal from '../../Components/Modal/Modal'
+import SubmitButton from '../../Components/SubmitButton/SubmitButton'
+import history from '../../history'
+import orderService from '../../services/order-service'
 
 class UserOrders extends React.Component {
     state = {
         username: null,
         orders: null,
-        loading: false
+        loading: false,
+        deleted: false,
+        deleteId: null
     }
 
     componentDidMount() {
@@ -20,6 +26,20 @@ class UserOrders extends React.Component {
             userService.load(id).then(user => {
                 this.setState({ username: user.username, orders: user.trips, loading: false })
             })
+        })
+    }
+
+    confirmDelete = (e) => {
+        const id = e.target.id
+        console.log('id to delete', e.target.id);
+        this.setState({ deleted: !this.state.deleted, deleteId: id })
+    }
+
+    deleteOrder = () => {
+        const id = this.state.deleteId
+        orderService.delete(id).then(deleted => {
+            console.log('deleted', deleted)
+            history.push('/')
         })
     }
 
@@ -33,15 +53,25 @@ class UserOrders extends React.Component {
             startDate={moment(order.startDate).format('DD/MM/YYYY')}
             duration={order.duration}
             additionalTrips={order.additionalTrips}
-            key={order._id} />) : <p>No orders yet.</p>
+            key={order._id}
+            id={order._id}
+            deleteOrder={this.confirmDelete} />) : <p>No orders yet.</p>
 
         return (
             <Aux>
-            <Welcome welcome="User Orders" />
-            <div className="Background" style={{display: 'block'}}>
-                {this.state.loading ? <Loading/> : renderedOrders}
-            </div>
-        </Aux>
+                {this.state.deleted ?
+                    <Modal show={this.confirmDelete}>
+                        <div>
+                            <h3>DELETING ORDER</h3>
+                            <p>Are you sure you want to delete this order?</p>
+                            <SubmitButton submit={this.deleteOrder}>DELETE</SubmitButton>
+                        </div>
+                    </Modal> : null}
+                <Welcome welcome="User Orders" />
+                <div className="Background" style={{ display: 'block' }}>
+                    {this.state.loading ? <Loading /> : renderedOrders}
+                </div>
+            </Aux>
         )
     }
 }

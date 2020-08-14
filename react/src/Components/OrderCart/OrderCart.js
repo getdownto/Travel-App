@@ -11,6 +11,7 @@ const OrderCart = (props) => {
                 <p>${Number(price).toFixed(2)}</p>
             </div>
         })
+
     return (
         <div>
             <div className={styles.OrderCart}>
@@ -18,7 +19,13 @@ const OrderCart = (props) => {
                     <img className={styles.Cover} src={props.imageUrl} alt="img" />
                 </div>
                 <div className={styles.Beside}>
+                    <div className={styles.HeadingContainer}>
                     <p className={styles.OrderHeading}>{props.mainTrip}</p>
+                    <div className={styles.EditIcons}>
+                        {/* <img src='/edit.svg' alt='edit' /> */}
+                        <img src='/delete.svg' alt='delete' onClick={props.deleteOrder} id={props.id} />
+                    </div>
+                    </div>
                     <div className={styles.MainTripDetails}>
                         <p className={styles.Date}>{props.startDate}</p>
                         <div className={styles.Duration}>
