@@ -42,11 +42,17 @@ module.exports = {
 
     delete: (req, res, next) => {
         const id = req.params.id;
-        const { _id } = req.user;
-        models.Order.deleteOne({ _id: id })
+        const { _id, trips } = req.user;
+        const index = trips.indexOf(id)
+        console.log(req.body);
+        // console.log(index);
+        // trips.splice(index, 1)
+        // console.log(trips);
+        models.Order.findOneAndDelete({ _id: id })
             .then(deleted => {
+                console.log('deleted', deleted);
                 return Promise.all([
-                    models.User.updateOne({ _id }, { $pull: { trips: mongoose.Types.ObjectId(deleted._id) } }),
+                    models.User.updateOne({ _id: deleted.user }, { $pull: { trips: id }}),
                 ]);
             })
             .then((removedOrder) => res.send(removedOrder))
