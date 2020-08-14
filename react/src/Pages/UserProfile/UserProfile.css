@@ -53,6 +53,14 @@
     width: 90%;
 }
 
+.UserContainer a {
+    color: rgb(49, 49, 49);
+}
+
+.UserContainer a:hover {
+    text-decoration: underline;
+}
+
 .GridItem {
     width: 15vw;
     text-align: left;

@@ -103,7 +103,7 @@ class UserProfile extends React.Component {
             <LazyLoad height={100} key={user._id}>
                 <div className="UserContainer">
                     <div className="GridItem">{user.username}</div>
-                    <div className="GridItem">{user.trips.length} orders</div>
+                    <Link to={`/user/${user._id}`} className="GridItem">{user.trips.length} orders</Link>
                     {!user.isAdmin ? <button className="GridItem GridBtn" id={user._id} onClick={this.makeAdmin}>Make Admin</button>: <p className="GridItem">ADMIN</p>}
                 </div>
             </LazyLoad>) : <p>No users found.</p>}

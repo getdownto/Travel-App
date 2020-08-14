@@ -12,7 +12,7 @@ class Items extends React.Component {
         trips: [],
         loading: false,
         currentPage: 1,
-        postsPerPage: 3,
+        postsPerPage: 6,
 
     }
 
