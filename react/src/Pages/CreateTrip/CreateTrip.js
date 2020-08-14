@@ -1,6 +1,7 @@
 import React from 'react'
 import DatePicker from "react-datepicker";
 import DynamicInput from '../../Components/DynamicInput/DynamicInput'
+import UploadImage from '../../Components/UploadImage/UploadImage'
 import "react-datepicker/dist/react-datepicker.css"
 import './CreateTrip.css'
 import Welcome from '../../Components/Welcome/Welcome'
@@ -69,6 +70,23 @@ class CreateTrip extends React.Component {
         this.setState({ additionalTrips: trips })
     }
 
+    showWidget = (e) => {
+        e.preventDefault()
+        let widget = window.cloudinary.createUploadWidget({
+            cloudName: 'doo9nqqhu',
+            uploadPreset: 'SoftuniTrips'
+        }, (error, result) => {
+            console.log('error', error)
+            console.log('result', result)
+            if(result.event === 'success') {
+                this.setState({imageUrl: result.info.url})
+                console.log(this.state)
+            }
+        })
+
+        widget.open()
+    }
+
     submitForm = (e) => {
         e.preventDefault()
 
@@ -112,9 +130,10 @@ class CreateTrip extends React.Component {
                     {this.state.errors && this.state.errors['price'] ? <img className="errorIcon" src="/close.svg" alt="error"></img> : null}
                     </div>
                     {this.state.errors && this.state.errors['price'] ? <p className="ErrorMessage">{this.state.errors.price[0]}</p> : null}
-                    <div className="FieldContainer">
+                    <div className="FieldContainerImage">
                     <input type="text" name="imageUrl" placeholder="Image URL" value={this.state.imageUrl} onChange={this.changeFiealdHandler} />
                     {this.state.errors && this.state.errors['imageUrl'] ? <img className="errorIcon" src="/close.svg" alt="error"></img> : null}
+                    <UploadImage showWidget={this.showWidget} />
                     </div>
                     {this.state.errors && this.state.errors['imageUrl'] ? <p className="ErrorMessage">{this.state.errors.imageUrl[0]}</p> : null}
                     <DatePicker

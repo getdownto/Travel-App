@@ -1,0 +1,11 @@
+.Container {
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+}
+
+.Container p {
+    padding-top: 50px;
+    margin-left: 5vh;
+    color: #525252;
+}
