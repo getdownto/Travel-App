@@ -31,5 +31,7 @@ After code is downloaded, all dependecies should be installed (`npm install`). A
 | Edit Trip          | Edit existing trip                                        |/edit/:id     |:x:               |:x:               |:heavy_check_mark:|
 | User Profile       | View All Orders (created by that user)                    |/profile      |:x:               |:heavy_check_mark:|:x:               |
 | Admin Panel        | View All Users and make selected user admin               |/profile      |:x:               |:x:               |:heavy_check_mark:|
+| User Orders        | View All orders of a partucular user                      |/user/:id     |:x:               |:x:               |:heavy_check_mark:|
+| Edit User Order    | Edit selected order (change status)                       |/editOrder/:id|:x:               |:x:               |:heavy_check_mark:|
 
 
