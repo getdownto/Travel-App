@@ -95,6 +95,7 @@ class UserProfile extends React.Component {
                 startDate={moment(order.startDate).format('DD/MM/YYYY')}
                 duration={order.duration}
                 additionalTrips={order.additionalTrips}
+                status={order.status}
                 key={order._id} />) : <p>No orders yet.</p>}
         </div>
         const adminView = isAdmin &&

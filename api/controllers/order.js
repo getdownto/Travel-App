@@ -18,11 +18,11 @@ module.exports = {
     },
 
     post: (req, res, next) => {
-        const { mainTrip, destination, imageUrl, startDate, duration, mainTripPrice, totalPrice, additionalTrips } = req.body;
+        const { mainTrip, destination, imageUrl, startDate, duration, mainTripPrice, totalPrice, status, additionalTrips } = req.body;
         const { _id } = req.user;
         console.log(_id)
 
-        models.Order.create({ mainTrip, destination, imageUrl, startDate, duration, mainTripPrice, totalPrice, additionalTrips, user: _id })
+        models.Order.create({ mainTrip, destination, imageUrl, startDate, duration, mainTripPrice, totalPrice, status: 'NEW', additionalTrips, user: _id })
             .then((created) => {
                 return Promise.all([
                     models.User.updateOne({ _id }, { $push: { trips: created } }),
@@ -34,8 +34,8 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { additionalTrips } = req.body;
-        models.Order.update({ _id: id }, { additionalTrips: [...additionalTrips] })
+        const { status } = req.body;
+        models.Order.update({ _id: id }, { status })
             .then((updatedTOrder) => res.send(updatedTOrder))
             .catch(next)
     },
@@ -45,9 +45,6 @@ module.exports = {
         const { _id, trips } = req.user;
         const index = trips.indexOf(id)
         console.log(req.body);
-        // console.log(index);
-        // trips.splice(index, 1)
-        // console.log(trips);
         models.Order.findOneAndDelete({ _id: id })
             .then(deleted => {
                 console.log('deleted', deleted);

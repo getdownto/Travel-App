@@ -17,6 +17,7 @@ import Destinations from './Pages/Destinations/Destinations'
 import EditTrip from './Pages/EditTrip/EditTrip'
 import Details from './Pages/Details/Details'
 import UserOrders from './Pages/UserOrders/UserOrders'
+import EditOrder from './Pages/EditOrder/EditOrder'
 import Error from './Pages/Error/Error'
 import Loading from './Components/Loading/Loading'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
@@ -64,6 +65,7 @@ class Navigation extends React.Component {
                   <Route path='/details/:id' component={this.context.isLogged ? Details : Login} isAdmin={this.context.isAdmin} />
                   <Route path='/user/:id' component={this.context.isAdmin ? UserOrders : Login} />
                   <Route path='/edit/:id' component={this.context.isAdmin ? EditTrip : null} />
+                  <Route path='/editOrder/:id' component={this.context.isAdmin ? EditOrder : null} />
                   <Route component={Error} />
                 </Switch>
                 </Suspense>

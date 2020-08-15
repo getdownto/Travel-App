@@ -5,16 +5,11 @@
     box-shadow: 3px 3px 12px #cecece56;
     text-decoration: none;
     color: rgb(49, 49, 49);
-    transition: all .2s ease-in-out;
     width: 70%;
-    padding: 15px;
+    padding: 25px;
     margin: 20px auto;
 }
 
-.OrderCart:hover {
-    transform: scale(1.018);
-    box-shadow: 5px 5px 12px #8f8f8f5d;
-}
 
 .SmallImage {
     width: 25%;
@@ -142,8 +137,6 @@ a {
     display: flex;
     justify-content: space-between;
     margin-top: 10vh;
-    width: 30%;
+    width: 50%;
     margin-left: 20px;
-    font-size: 1.5vh;
-    font-weight: 600;
 }

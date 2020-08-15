@@ -8,6 +8,7 @@ import userService from '../../services/user-service'
 import Modal from '../../Components/Modal/Modal'
 import SubmitButton from '../../Components/SubmitButton/SubmitButton'
 import history from '../../history'
+import AuthContext from '../../Context'
 import orderService from '../../services/order-service'
 
 class UserOrders extends React.Component {
@@ -18,6 +19,8 @@ class UserOrders extends React.Component {
         deleted: false,
         deleteId: null
     }
+
+    static contextType = AuthContext
 
     componentDidMount() {
         const id = this.props.match.params.id
@@ -45,6 +48,7 @@ class UserOrders extends React.Component {
 
     render() {
         const orders = this.state.orders
+        const isAdmin = this.context.isAdmin
         const renderedOrders = orders !== null && orders.length > 0 ? orders.map(order => <OrderCart
             mainTrip={order.destination}
             totalPrice={order.totalPrice}
@@ -53,8 +57,10 @@ class UserOrders extends React.Component {
             startDate={moment(order.startDate).format('DD/MM/YYYY')}
             duration={order.duration}
             additionalTrips={order.additionalTrips}
+            status={order.status}
             key={order._id}
             id={order._id}
+            isAdmin={isAdmin}
             deleteOrder={this.confirmDelete} />) : <p>No orders yet.</p>
 
         return (

@@ -26,7 +26,7 @@ const orderService = {
             credentials: 'include'
         }).then(res => res.text())
     },
-    update: function(id, destination, price, imageUrl, startDate, duration, description, additionalTrips) {
+    update: function(id, status) {
         return fetch(`http://localhost:9999/api/order/${id}`, {
             method: 'PUT',
             headers: {
@@ -35,13 +35,7 @@ const orderService = {
 
             },
             body: JSON.stringify({
-                destination,
-                price,
-                imageUrl,
-                startDate,
-                duration,
-                description,
-                additionalTrips
+                status
             }),
             credentials: 'include'
         }).then(res => res.text())

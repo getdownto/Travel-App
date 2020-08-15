@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import styles from './OrderCart.module.css'
 
 const OrderCart = (props) => {
@@ -21,10 +22,10 @@ const OrderCart = (props) => {
                 <div className={styles.Beside}>
                     <div className={styles.HeadingContainer}>
                     <p className={styles.OrderHeading}>{props.mainTrip}</p>
-                    <div className={styles.EditIcons}>
-                        {/* <img src='/edit.svg' alt='edit' /> */}
+                    {props.isAdmin === true ? <div className={styles.EditIcons}>
+                        <Link to={`/editOrder/${props.id}`}><img src='/edit.svg' alt='edit' /></Link>
                         <img src='/delete.svg' alt='delete' onClick={props.deleteOrder} id={props.id} />
-                    </div>
+                    </div> : null}
                     </div>
                     <div className={styles.MainTripDetails}>
                         <p className={styles.Date}>{props.startDate}</p>
@@ -43,6 +44,10 @@ const OrderCart = (props) => {
                         <p>TOTAL:</p>
                         <p className={styles.TotalPrice}>${props.totalPrice.toFixed(2)}</p>
                     </div>
+                    <div className={styles.StatusContainer}>
+                            <p>ORDER STATUS:</p>
+                            <p className={styles.TotalPrice}>{props.status}</p>
+                        </div>
                 </div>
             </div>
         </div>
