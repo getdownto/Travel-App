@@ -22,9 +22,7 @@ class EditOrder extends React.Component {
 
     componentDidMount() {
         const id = this.props.match.params.id
-        console.log('order id', id)
         orderService.details(id).then(loadedOrder => {
-            console.log('loadedOrder', loadedOrder)
             const date = new Date(loadedOrder.startDate)
             this.setState({
                 mainTrip: loadedOrder.mainTrip,
@@ -41,7 +39,6 @@ class EditOrder extends React.Component {
     }
 
     handleSelect = (e) => {
-        console.log(e.target.value)
         this.setState({status: e.target.value})
     }
 
@@ -53,12 +50,10 @@ class EditOrder extends React.Component {
     }
 
     render() {
-        console.log('order state', this.state)
         const additionaTripsRendered = this.state.additionalTrips && this.state.additionalTrips.length > 0 &&
             this.state.additionalTrips.map((trip, index) => {
                 const name = Object.keys(trip)[0]
                 const price = trip[name]
-                console.log(name, price)
                 return <div className={styles.AddContainer} key={index}>
                     <p>+ {name}</p>
                     <p>${Number(price).toFixed(2)}</p>

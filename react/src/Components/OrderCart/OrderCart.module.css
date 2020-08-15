@@ -140,10 +140,14 @@ a {
 
 .StatusContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     margin-top: 10vh;
     width: 30%;
     margin-left: 20px;
-    font-size: 1.5vh;
+    font-size: 1.6vh;
     font-weight: 600;
+}
+
+.StatusContainer p {
+    margin-right: 5px;
 }

@@ -24,7 +24,6 @@ class UserOrders extends React.Component {
 
     componentDidMount() {
         const id = this.props.match.params.id
-        console.log('id', this.props);
         this.setState({ loading: true }, () => {
             userService.load(id).then(user => {
                 this.setState({ username: user.username, orders: user.trips, loading: false })
@@ -34,14 +33,12 @@ class UserOrders extends React.Component {
 
     confirmDelete = (e) => {
         const id = e.target.id
-        console.log('id to delete', e.target.id);
         this.setState({ deleted: !this.state.deleted, deleteId: id })
     }
 
     deleteOrder = () => {
         const id = this.state.deleteId
         orderService.delete(id).then(deleted => {
-            console.log('deleted', deleted)
             history.push('/')
         })
     }
