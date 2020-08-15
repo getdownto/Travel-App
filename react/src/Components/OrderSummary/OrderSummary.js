@@ -13,7 +13,7 @@ const OrderSummary = (props) => {
             </div>
             <div className={`${styles.MainTrip} ${styles.Columns}`}>
                 <p>{props.mainTrip}</p>
-                <p>${props.mainTripPrice}</p>
+                <p>${Number(props.mainTripPrice).toFixed(2)}</p>
             </div>
             {props.additionalTrips !== null && props.additionalTrips.length > 0 ?
                 <ul>
